@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conheça a SOS Vidas: ONG sediada na Vila Mariana, Ribeirão Preto. Equipe com assistente social e psicóloga atende famílias em vulnerabilidade desde 2014.">
+  <title>Sobre a SOS Vidas — 10 anos de cuidado em Ribeirão Preto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ── Page hero (editorial) ── */
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&display=swap');
+
+    .page-hero {
+      background: #FAF7F2;
+      position: relative;
+      overflow: hidden;
+      padding-block: 4rem 4.5rem;
+      color: var(--text);
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(90deg, rgba(21,101,192,.04) 1px, transparent 1px);
+      background-size: 80px 100%;
+      pointer-events: none;
+    }
+    .page-hero .container { position: relative; }
+    .page-hero .badge {
+      background: rgba(21, 101, 192, .08);
+      color: var(--blue);
+      border: 1px solid rgba(21, 101, 192, .18);
+    }
+    .page-hero h1 {
+      font-family: 'Fraunces', 'Outfit', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      color: #0F1E33;
+      margin-bottom: 1rem;
+      max-width: 18ch;
+    }
+    .page-hero h1 em {
+      font-style: italic;
+      font-weight: 700;
+      color: var(--blue);
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .page-hero h1 em {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 24' preserveAspectRatio='none'><path d='M3 16 C 80 4, 160 22, 297 9' stroke='%23FDD835' stroke-width='10' stroke-linecap='round' fill='none'/></svg>");
+      background-repeat: no-repeat;
+      background-position: 0 88%;
+      background-size: 100% 22%;
+    }
+    .page-hero h1 em::after {
+      content: '';
+    }
+    .page-hero p {
+      color: #4A5468;
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    /* ── Quem somos layout ── */
+    .quem-somos-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .quem-somos-grid { grid-template-columns: 3fr 2fr; gap: 3.5rem; }
+    }
+
+    .quem-somos-img {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      max-width: 420px;
+      margin-inline: auto;
+      width: 100%;
+    }
+    .quem-somos-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--yellow);
+      transform: rotate(-2deg);
+      border-radius: 12px;
+      z-index: 0;
+    }
+    .quem-somos-img img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px -16px rgba(15, 30, 51, .28);
+      transform: rotate(1.5deg);
+      z-index: 1;
+    }
+    .quem-somos-caption {
+      position: absolute;
+      bottom: -28px;
+      right: 8px;
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: .85rem;
+      color: var(--text-light);
+      z-index: 2;
+    }
+    .quem-somos-caption::before { content: '↗ '; color: var(--pink); font-style: normal; }
+
+    /* ── Stats row ── */
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gray-dark);
+    }
+    .stat-item {
+      flex: 1;
+      min-width: 120px;
+      text-align: center;
+      padding: 1rem;
+      background: var(--gray);
+      border-radius: var(--radius);
+    }
+    .stat-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--blue);
+      display: block;
+      line-height: 1.2;
+    }
+    .stat-label {
+      font-size: .82rem;
+      color: var(--text-light);
+      margin-top: .25rem;
+      display: block;
+    }
+
+    /* ── Missão visão valores ── */
+    .mvv-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .mvv-card h3 {
+      font-size: 1.15rem;
+      margin: 0;
+    }
+    .mvv-card p,
+    .mvv-card ul {
+      font-size: .93rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+    .mvv-values-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .45rem;
+    }
+    .mvv-values-list li {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .93rem;
+      color: var(--text-light);
+    }
+    .mvv-values-list li::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--yellow-dark);
+      flex-shrink: 0;
+    }
+
+    /* ── Equipe ── */
+    .team-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 2rem 1.75rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .85rem;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .team-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .team-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text);
+      margin: 0;
+    }
+    .team-role {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .team-bio {
+      font-size: .88rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* ── Base legal ── */
+    .lei-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+    .lei-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      background: var(--white);
+      border: 2px solid var(--blue);
+      color: var(--blue);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: .9rem;
+      padding: .55rem 1.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    a.lei-pill:hover,
+    a.lei-pill:focus-visible {
+      background: var(--blue);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px -10px rgba(21, 101, 192, .55);
+      outline: none;
+    }
+    a.lei-pill:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
+    .lei-pill .ext-icon { opacity: .85; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../index.html" class="header-logo" aria-label="SOS Vidas — Ir para a página inicial">
+        <img src="../img/logo.png" alt="Logotipo SOS Vidas">
+        <div class="header-logo-text">
+          <span class="header-logo-name">SOS Vidas</span>
+          <span class="header-logo-sub">Ribeirão Preto</span>
+        </div>
+      </a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <a href="../index.html">Início</a>
+        <a href="sobre.html" class="active" aria-current="page">Sobre</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="transparencia.html">Transparência</a>
+        <a href="doacoes.html">Doações</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="contato.html">Contato</a>
+        <a href="doacoes.html" class="nav-cta">Doe agora</a>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Navegação mobile">
+    <a href="../index.html">Início</a>
+    <a href="sobre.html" class="active">Sobre</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="transparencia.html">Transparência</a>
+    <a href="doacoes.html">Doações</a>
+    <a href="eventos.html">Eventos</a>
+    <a href="contato.html">Contato</a>
+    <a href="doacoes.html" class="nav-cta">Doe agora</a>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="page-hero" aria-labelledby="sobre-titulo">
+      <div class="container">
+        <span class="badge badge--yellow" style="margin-bottom:1rem;">Nossa história</span>
+        <h1 id="sobre-titulo">Uma <em>história</em> de cuidado em Ribeirão Preto</h1>
+        <p>Uma instituição construída sobre os pilares do cuidado, da dignidade e do respeito a cada pessoa.</p>
+      </div>
+    </section>
+
+    <!-- QUEM SOMOS -->
+    <section class="section" aria-labelledby="quem-somos-titulo">
+      <div class="container">
+        <div class="quem-somos-grid">
+          <div>
+            <h2 id="quem-somos-titulo" style="font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:1.25rem;">Uma missão de cuidado e inclusão</h2>
+            <p style="color:var(--text-light);line-height:1.75;margin-bottom:1rem;">
+              A SOS Vidas é uma instituição sem fins lucrativos sediada na Rua Bolívia, 1296 – Vila Mariana, Ribeirão Preto – SP. Atuamos na garantia de direitos de idosos, pessoas com deficiência e famílias em situação de vulnerabilidade social, com equipe técnica composta por assistente social e psicóloga.
+            </p>
+            <p style="color:var(--text-light);line-height:1.75;">
+              Nosso compromisso é promover inclusão, cuidado e qualidade de vida com ética e sensibilidade social — porque acreditamos que o atendimento humanizado é um direito de todo cidadão, não um privilégio.
+            </p>
+            <div class="stats-row" aria-label="Números da SOS Vidas">
+              <div class="stat-item">
+                <span class="stat-value">50–60</span>
+                <span class="stat-label">Famílias atendidas por mês</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">3</span>
+                <span class="stat-label">Programas ativos</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">RP–SP</span>
+                <span class="stat-label">Ribeirão Preto</span>
+              </div>
+            </div>
+          </div>
+          <div class="quem-somos-img">
+            <img src="../img/galeria/equipe-acolhimento.jpg" alt="Equipe técnica da SOS Vidas — Talita, Fabiana e Maria Clara — com criança em tratamento oncológico">
+            <span class="quem-somos-caption">Equipe técnica em atendimento</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSÃO VISÃO VALORES -->
+    <section class="section section--gray" aria-labelledby="mvv-titulo">
+      <div class="container">
+        <h2 class="section-title" id="mvv-titulo">Missão, Visão e Valores</h2>
+        <p class="section-subtitle">Os fundamentos que guiam cada ação da SOS Vidas.</p>
+        <div class="grid-3" style="margin-top:2rem;">
+
+          <div class="mvv-card">
+            <span class="badge badge--blue">Missão</span>
+            <h3>O que fazemos</h3>
+            <p>Garantir o atendimento prioritário a pessoas em situação de vulnerabilidade, especialmente idosos e pessoas com deficiência, assegurando seus direitos conforme a legislação brasileira.</p>
+          </div>
+
+          <div class="mvv-card">
+            <span class="badge badge--pink">Visão</span>
+            <h3>Para onde vamos</h3>
+            <p>Ser referência em atendimento social em Ribeirão Preto, ampliando o alcance dos nossos programas e fortalecendo os vínculos comunitários.</p>
+          </div>
+
+          <div class="mvv-card">
+            <span class="badge badge--yellow">Valores</span>
+            <h3>Como atuamos</h3>
+            <ul class="mvv-values-list" aria-label="Valores da SOS Vidas">
+              <li>Dignidade humana</li>
+              <li>Inclusão social</li>
+              <li>Ética e transparência</li>
+              <li>Cuidado e acolhimento</li>
+              <li>Não discriminação</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EQUIPE -->
+    <section class="section" aria-labelledby="equipe-titulo">
+      <div class="container">
+        <h2 class="section-title" id="equipe-titulo">Nossa equipe</h2>
+        <p class="section-subtitle">Profissionais comprometidos com o atendimento humanizado e a transformação social.</p>
+        <div class="grid-3" style="margin-top:2rem;">
+
+          <article class="team-card">
+            <div class="team-avatar" aria-hidden="true">T</div>
+            <p class="team-name">Talita Aparecida Valezzi de Souza</p>
+            <span class="team-role">Presidente</span>
+            <p class="team-bio">Fundadora e gestora do projeto, Talita lidera a SOS Vidas com dedicação à causa social há mais de uma década.</p>
+          </article>
+
+          <article class="team-card">
+            <div class="team-avatar" style="background:var(--pink-light);color:var(--pink);" aria-hidden="true">F</div>
+            <p class="team-name">Fabiana Martins</p>
+            <span class="team-role" style="color:var(--pink);">Assistente Social</span>
+            <p class="team-bio">Profissional dedicada ao atendimento humanizado, Fabiana acompanha individualmente cada família e caso do projeto.</p>
+          </article>
+
+          <article class="team-card">
+            <div class="team-avatar" style="background:#FFF9C4;color:var(--yellow-dark);" aria-hidden="true">M</div>
+            <p class="team-name">Maria Clara</p>
+            <span class="team-role" style="color:var(--yellow-dark);">Psicóloga</span>
+            <p class="team-bio">Responsável pelo acolhimento emocional e pelas rodas de conversa, promovendo saúde mental e fortalecimento dos laços.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BASE LEGAL -->
+    <section class="section section--gray" aria-labelledby="legal-titulo">
+      <div class="container text-center">
+        <h2 class="section-title" id="legal-titulo">Atuação conforme a legislação</h2>
+        <p class="section-subtitle">Nossa missão é fundamentada nas principais legislações de proteção social do Brasil:</p>
+        <div class="lei-badges" role="list" aria-label="Legislações que embasam a atuação da SOS Vidas">
+          <a class="lei-pill" role="listitem" href="https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank" rel="noopener noreferrer" aria-label="Constituição Federal de 1988 — abrir texto oficial em nova aba">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Constituição Federal de 1988
+            <svg class="ext-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+          </a>
+          <a class="lei-pill" role="listitem" href="https://www.planalto.gov.br/ccivil_03/leis/2003/l10.741compilado.htm" target="_blank" rel="noopener noreferrer" aria-label="Estatuto da Pessoa Idosa (Lei 10.741/2003) — abrir texto oficial em nova aba">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Estatuto da Pessoa Idosa
+            <svg class="ext-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+          </a>
+          <a class="lei-pill" role="listitem" href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm" target="_blank" rel="noopener noreferrer" aria-label="Estatuto da Pessoa com Deficiência (Lei 13.146/2015) — abrir texto oficial em nova aba">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Estatuto da Pessoa com Deficiência
+            <svg class="ext-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+          </a>
+        </div>
+        <p style="max-width:640px;margin-inline:auto;color:var(--text-light);font-size:.95rem;line-height:1.7;">
+          Cada ação da SOS Vidas é planejada com base nesses marcos legais, garantindo que nossos beneficiários tenham seus direitos fundamentais respeitados e efetivados com dignidade.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="../img/logo.png" alt="Logotipo SOS Vidas">
+            <span class="footer-logo-name">SOS Vidas</span>
+          </div>
+          <p>Projeto social sem fins lucrativos que promove inclusão, cuidado e dignidade para quem mais precisa em Ribeirão Preto – SP.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="../index.html">Início</a></li>
+            <li><a href="sobre.html">Sobre nós</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="transparencia.html">Transparência</a></li>
+            <li><a href="doacoes.html">Doações</a></li>
+            <li><a href="eventos.html">Eventos</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <address>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Rua Bolívia, 1296 – Vila Mariana<br>CEP 14075-250, Ribeirão Preto – SP
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 5.29 5.29l1.2-.75a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
+              (16) 3441-5578
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Seg–Sex, 08h às 17h
+            </div>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 SOS Vidas Ribeirão Preto · Associação SOS Vidas · CNPJ 30.339.161/0001-75</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/sos_vidass/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/OngSOSVidas/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+                    <a href="https://www.youtube.com/@ThalitaValezi" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a2.997 2.997 0 0 0-2.108-2.12C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.39.566A2.997 2.997 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a2.997 2.997 0 0 0 2.108 2.12C4.49 20.5 12 20.5 12 20.5s7.51 0 9.39-.566a2.997 2.997 0 0 0 2.108-2.12C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.75 15.568V8.432L15.818 12 9.75 15.568z"/></svg>
+          </a>
+<a href="https://wa.me/551634415578" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

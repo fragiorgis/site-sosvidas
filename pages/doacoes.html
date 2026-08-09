@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Doe para a SOS Vidas Ribeirão Preto via PIX (CNPJ), alimentos não perecíveis ou roupas. Sua doação chega direto a 50–60 famílias atendidas por mês.">
+  <title>Doar para SOS Vidas — PIX, Alimentos e Roupas em RP</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ── Page hero (editorial) ── */
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&display=swap');
+
+    .page-hero {
+      background: #FAF7F2;
+      position: relative;
+      overflow: hidden;
+      padding-block: 4rem 4.5rem;
+      color: var(--text);
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(90deg, rgba(21,101,192,.04) 1px, transparent 1px);
+      background-size: 80px 100%;
+      pointer-events: none;
+    }
+    .page-hero .container { position: relative; }
+    .page-hero .badge {
+      background: rgba(21, 101, 192, .08);
+      color: var(--blue);
+      border: 1px solid rgba(21, 101, 192, .18);
+    }
+    .page-hero h1 {
+      font-family: 'Fraunces', 'Outfit', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      color: #0F1E33;
+      margin-bottom: 1rem;
+      max-width: 18ch;
+    }
+    .page-hero h1 em {
+      font-style: italic;
+      font-weight: 700;
+      color: var(--blue);
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .page-hero h1 em {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 24' preserveAspectRatio='none'><path d='M3 16 C 80 4, 160 22, 297 9' stroke='%23FDD835' stroke-width='10' stroke-linecap='round' fill='none'/></svg>");
+      background-repeat: no-repeat;
+      background-position: 0 88%;
+      background-size: 100% 22%;
+    }
+    .page-hero h1 em::after {
+      content: '';
+    }
+    .page-hero p {
+      color: #4A5468;
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    /* PIX card */
+    .pix-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 2rem;
+      border-top: 4px solid var(--yellow);
+      text-align: center;
+    }
+    .pix-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, #32BCAD, #1B8B80);
+      border-radius: var(--radius-lg);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+    .pix-card h2 { font-size: 1.5rem; color: var(--text); margin-bottom: .5rem; }
+    .pix-card .pix-sub { color: var(--text-light); margin-bottom: 1.5rem; }
+
+    .pix-chave-box {
+      background: var(--gray);
+      border: 2px dashed var(--gray-dark);
+      border-radius: var(--radius);
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .pix-chave-label { font-size: .78rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .3rem; }
+    .pix-chave-valor { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--blue); word-break: break-all; }
+
+    .pix-copy {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .6rem 1.25rem;
+      background: var(--blue-light);
+      color: var(--blue);
+      border-radius: var(--radius);
+      font-weight: 600; font-size: .9rem;
+      cursor: pointer;
+      border: none;
+      transition: background var(--transition);
+    }
+    .pix-copy:hover { background: var(--gray-dark); }
+    .pix-copy:focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; }
+
+    .pix-qr {
+      width: 160px; height: 160px;
+      border: 2px solid var(--gray-dark);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      margin: 1rem auto;
+      background: var(--gray);
+      color: var(--text-light); font-size: .85rem; text-align: center;
+      padding: 1rem;
+    }
+
+    /* Doação física */
+    .doe-fisica-card {
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      height: 100%;
+    }
+    .doe-fisica-card .icon-wrap {
+      width: 56px; height: 56px;
+      border-radius: var(--radius-lg);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .doe-fisica-card h3 { font-size: 1.2rem; margin-bottom: .75rem; }
+    .doe-fisica-card ul { list-style: none; padding: 0; }
+    .doe-fisica-card ul li {
+      padding: .45rem 0;
+      border-bottom: 1px solid var(--gray-dark);
+      font-size: .95rem; color: var(--text-light);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .doe-fisica-card ul li:last-child { border-bottom: none; }
+    .doe-fisica-card ul li::before { content: '✓'; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+
+    /* FAQ */
+    .faq-item {
+      border-bottom: 1px solid var(--gray-dark);
+      padding-block: 1.25rem;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-weight: 600; color: var(--text); margin-bottom: .5rem; display: flex; align-items: flex-start; gap: .75rem; }
+    .faq-q::before { content: 'P'; display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--blue); color: var(--white); border-radius: 50%; font-size: .75rem; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .faq-a { font-size: .95rem; color: var(--text-light); line-height: 1.7; padding-left: 2.25rem; }
+
+    /* Card médico (fraldas/dietas/suplementos) — destaque */
+    .doe-medico-card {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #F8FBFF 0%, #FFFFFF 100%);
+      border: 1px solid rgba(21,101,192,.14);
+    }
+    .doe-medico-card .icon-wrap { background: var(--blue-light); color: var(--blue); }
+    .doe-medico-sub {
+      display: grid; gap: 1rem;
+      grid-template-columns: 1fr;
+      margin-top: 1rem;
+    }
+    .doe-medico-sub .sub-card {
+      background: var(--white);
+      border: 1px solid var(--gray-dark);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+    }
+    .doe-medico-sub .sub-card h4 {
+      font-size: .95rem; margin-bottom: .35rem; color: var(--blue-dark);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .doe-medico-sub .sub-card h4::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+    .doe-medico-sub .sub-card p {
+      font-size: .88rem; color: var(--text-light); line-height: 1.55;
+    }
+    .doe-medico-sub .sub-card .marcas {
+      font-size: .82rem; color: var(--blue); font-weight: 600; margin-top: .35rem;
+    }
+    @media (min-width: 640px) {
+      .doe-medico-sub { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Instruções (cupom fiscal + IR) */
+    .instr-grid {
+      display: grid; gap: 1.5rem;
+      grid-template-columns: 1fr;
+    }
+    .instr-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .instr-img-wrap {
+      background: var(--gray);
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .instr-img-wrap img {
+      width: 100%; height: 100%; object-fit: contain;
+      background: #FFFFFF;
+    }
+    .instr-body { padding: 1.5rem; }
+    .instr-body h3 { font-size: 1.15rem; margin-bottom: .5rem; color: var(--text); }
+    .instr-body p { font-size: .93rem; color: var(--text-light); line-height: 1.65; }
+    .instr-badge {
+      display: inline-block;
+      font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+      color: var(--blue); background: var(--blue-light);
+      padding: .2rem .55rem; border-radius: 999px; margin-bottom: .5rem;
+    }
+
+    @media (min-width: 768px) {
+      .doe-fisica-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .doe-hero-grid  { display: grid; grid-template-columns: 1fr 360px; gap: 2rem; align-items: start; }
+      .instr-grid     { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../index.html" class="header-logo" aria-label="SOS Vidas — Ir para a página inicial">
+        <img src="../img/logo.png" alt="Logotipo SOS Vidas">
+        <div class="header-logo-text">
+          <span class="header-logo-name">SOS Vidas</span>
+          <span class="header-logo-sub">Ribeirão Preto</span>
+        </div>
+      </a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <a href="../index.html">Início</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="transparencia.html">Transparência</a>
+        <a href="doacoes.html" class="active" aria-current="page">Doações</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="contato.html">Contato</a>
+        <a href="doacoes.html" class="nav-cta">Doe agora</a>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Navegação mobile">
+    <a href="../index.html">Início</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="transparencia.html">Transparência</a>
+    <a href="doacoes.html" class="active">Doações</a>
+    <a href="eventos.html">Eventos</a>
+    <a href="contato.html">Contato</a>
+    <a href="doacoes.html" class="nav-cta">Doe agora</a>
+  </nav>
+
+  <main>
+
+    <section class="page-hero" aria-labelledby="doe-titulo">
+      <div class="container">
+        <span class="badge badge--yellow" style="margin-bottom:1rem;">Faça a diferença</span>
+        <h1 id="doe-titulo">Sua doação <em>chega</em> a quem mais precisa</h1>
+        <p>Cada contribuição — seja um alimento, uma peça de roupa ou um PIX — é distribuída com responsabilidade e cuidado para as famílias que atendemos.</p>
+      </div>
+    </section>
+
+    <!-- PIX + CTA -->
+    <section class="section" aria-labelledby="pix-titulo">
+      <div class="container">
+        <div class="doe-hero-grid" style="display:grid;gap:2rem;">
+          <div>
+            <span class="badge badge--blue">Rápido e seguro</span>
+            <h2 class="section-title mt-1" id="pix-titulo">Doe via PIX</h2>
+            <p style="color:var(--text-light);line-height:1.8;margin-bottom:1.5rem;">
+              O PIX é a forma mais rápida e direta de contribuir com a SOS Vidas. O valor é recebido imediatamente e destinado ao atendimento das famílias cadastradas.
+            </p>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem;">
+              <li style="display:flex;align-items:center;gap:.75rem;font-size:.95rem;">
+                <span style="width:28px;height:28px;background:var(--blue-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:700;flex-shrink:0;">1</span>
+                Abra o app do seu banco e acesse a opção PIX
+              </li>
+              <li style="display:flex;align-items:center;gap:.75rem;font-size:.95rem;">
+                <span style="width:28px;height:28px;background:var(--blue-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:700;flex-shrink:0;">2</span>
+                Copie a chave PIX ao lado ou escaneie o QR Code
+              </li>
+              <li style="display:flex;align-items:center;gap:.75rem;font-size:.95rem;">
+                <span style="width:28px;height:28px;background:var(--blue-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:700;flex-shrink:0;">3</span>
+                Confirme o destinatário: <strong>SOS Vidas Ribeirão Preto</strong>
+              </li>
+              <li style="display:flex;align-items:center;gap:.75rem;font-size:.95rem;">
+                <span style="width:28px;height:28px;background:var(--blue-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:700;flex-shrink:0;">4</span>
+                Digite o valor que deseja doar e confirme
+              </li>
+            </ul>
+            <p style="font-size:.88rem;color:var(--text-light);">Dúvidas? <a href="https://wa.me/551634415578" style="color:var(--blue);font-weight:600;">Fale conosco no WhatsApp</a>.</p>
+          </div>
+
+          <div class="pix-card">
+            <div class="pix-icon" aria-hidden="true">
+              <svg width="36" height="36" viewBox="0 0 512 512" fill="white"><path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.4 369.5C350.7 380.8 366.4 386.9 382.1 386.9H394.2L313.5 467.6C286.4 494.6 242.6 494.6 215.5 467.6L134.7 386.9H146.7C162.4 386.9 178.1 380.8 189.4 369.5L242.4 292.5zM215.5 44.4L296.2 125.1H284.1C268.4 125.1 252.7 131.2 241.4 142.5L164.4 219.5C159 224.9 149.7 224.9 144.3 219.5L67.4 142.5C56.1 131.2 40.4 125.1 24.7 125.1H12.7L93.5 44.4C120.6 17.3 164.4 17.3 191.5 44.4 203 32.9 215.5 44.4 215.5 44.4z"/></svg>
+            </div>
+            <h2>PIX SOS Vidas</h2>
+            <p class="pix-sub">Escaneie o QR Code ou copie a chave abaixo</p>
+
+            <div class="pix-qr" role="img" aria-label="QR Code PIX da SOS Vidas — escaneie pelo app do banco">
+              <img src="../img/pix-qrcode.png" alt="QR Code PIX da Associação SOS Vidas — CNPJ 30.339.161/0001-75" style="width:100%;height:100%;object-fit:contain;padding:.4rem;background:white;border-radius:6px;">
+            </div>
+
+            <div class="pix-chave-box">
+              <div class="pix-chave-label">Chave PIX (CNPJ)</div>
+              <div class="pix-chave-valor" id="pix-chave">30.339.161/0001-75</div>
+              <p style="font-size:.78rem;color:var(--text-light);margin-top:.35rem;">Associação SOS Vidas — Ribeirão Preto/SP</p>
+            </div>
+
+            <button class="pix-copy" id="btn-copiar" aria-label="Copiar chave PIX para a área de transferência">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span id="btn-copiar-texto">Copiar chave PIX</span>
+            </button>
+            <p style="font-size:.78rem;color:var(--text-light);margin-top:.75rem;">Forma mais rápida e segura de doar — 100% direto na conta da instituição.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOAÇÃO FÍSICA -->
+    <section class="section section--gray" aria-labelledby="fisica-titulo">
+      <div class="container">
+        <div class="text-center">
+          <span class="badge badge--pink">Doação presencial</span>
+          <h2 class="section-title mt-1" id="fisica-titulo">Doações físicas</h2>
+          <p class="section-subtitle">Aceitamos alimentos e roupas diretamente em nossa sede, de segunda a sexta-feira.</p>
+        </div>
+        <div class="doe-fisica-grid" style="display:grid;gap:1.5rem;">
+          <article class="card doe-fisica-card">
+            <div class="icon-wrap" style="background:#E8F5E9;color:#2E7D32;" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <h3>Alimentos não perecíveis</h3>
+            <ul>
+              <li>Arroz, feijão, macarrão</li>
+              <li>Óleo, sal, açúcar, farinha</li>
+              <li>Leite em pó, achocolatado</li>
+              <li>Enlatados e conservas</li>
+              <li>Biscoitos e cereais</li>
+              <li>Produtos de higiene pessoal</li>
+            </ul>
+          </article>
+          <article class="card doe-fisica-card">
+            <div class="icon-wrap" style="background:var(--pink-light);color:var(--pink);" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3>Roupas e calçados</h3>
+            <ul>
+              <li>Roupas em bom estado (todas as idades)</li>
+              <li>Casacos e agasalhos</li>
+              <li>Calçados conservados</li>
+              <li>Roupas de cama e banho</li>
+              <li>Uniformes escolares</li>
+              <li>Acessórios e bolsas</li>
+            </ul>
+          </article>
+
+          <article class="card doe-fisica-card doe-medico-card">
+            <div style="display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap;">
+              <div class="icon-wrap" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14V8a2 2 0 0 0-2-2h-3V3h-4v3H7a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h3v3h4v-3h3a2 2 0 0 0 2-2z"/><path d="M9 11h6"/><path d="M12 8v6"/></svg>
+              </div>
+              <div style="flex:1;min-width:200px;">
+                <h3 style="margin-bottom:.4rem;">Fraldas, dietas e suplementos</h3>
+                <p style="font-size:.92rem;color:var(--text-light);line-height:1.6;">Itens de cuidado essencial para idosos, crianças e pessoas com necessidades especiais atendidas pela SOS Vidas.</p>
+              </div>
+            </div>
+            <div class="doe-medico-sub" role="list">
+              <div class="sub-card" role="listitem">
+                <h4>Fraldas descartáveis geriátricas</h4>
+                <p>Tamanhos P, M, G e XG. Para idosos em situação de dependência atendidos pelo programa Garantia de Direitos.</p>
+              </div>
+              <div class="sub-card" role="listitem">
+                <h4>Fraldas descartáveis infantis</h4>
+                <p>Todas as faixas etárias (RN, P, M, G e XG). Apoio a famílias em vulnerabilidade com crianças pequenas.</p>
+              </div>
+              <div class="sub-card" role="listitem">
+                <h4>Suplementos alimentares</h4>
+                <p>Para reforço nutricional de idosos e adultos em tratamento.</p>
+                <p class="marcas">Ex.: Nutren, Sustagem e similares</p>
+              </div>
+              <div class="sub-card" role="listitem">
+                <h4>Dietas enterais e infantis</h4>
+                <p>Fórmulas nutricionais para crianças e adultos com necessidades específicas.</p>
+                <p class="marcas">Ex.: Fortini Plus, Modulen, PediaSure</p>
+              </div>
+            </div>
+            <p style="margin-top:1rem;font-size:.85rem;color:var(--text-light);">
+              <strong style="color:var(--blue);">Importante:</strong> aceitamos itens dentro do prazo de validade e em embalagem íntegra. Em caso de dúvida sobre marca ou tipo, fale conosco antes.
+            </p>
+          </article>
+        </div>
+        <div class="card mt-2" style="background:var(--blue-light);box-shadow:none;display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <strong style="color:var(--blue-dark);">Ponto de entrega:</strong>
+            <span style="color:var(--text-light);"> Rua Bolívia, 1296 – Vila Mariana, Ribeirão Preto – SP · Seg–Sex, 08h às 17h</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUTRAS FORMAS DE APOIAR -->
+    <section class="section" aria-labelledby="apoio-titulo">
+      <div class="container">
+        <div class="text-center">
+          <span class="badge badge--blue">Apoie sem gastar nada a mais</span>
+          <h2 class="section-title mt-1" id="apoio-titulo">Outras formas de ajudar</h2>
+          <p class="section-subtitle">Você pode destinar parte do seu cupom fiscal e do seu Imposto de Renda diretamente para a SOS Vidas — siga o passo a passo das instruções abaixo.</p>
+        </div>
+
+        <div class="instr-grid">
+          <article class="instr-card">
+            <div class="instr-img-wrap">
+              <img src="../img/doacoes/instrucao-cupom-fiscal.jpg" alt="Passo a passo de como doar o crédito do cupom fiscal (Nota Fiscal Paulista) para a SOS Vidas" loading="lazy">
+            </div>
+            <div class="instr-body">
+              <span class="instr-badge">Cupom fiscal</span>
+              <h3>Doe seu crédito do cupom fiscal</h3>
+              <p>Você pode destinar o saldo do programa de devolução do ICMS (Nota Fiscal) diretamente para a SOS Vidas — sem custo nenhum para você. Siga o passo a passo da imagem para fazer a doação pelo aplicativo.</p>
+            </div>
+          </article>
+
+          <article class="instr-card">
+            <div class="instr-img-wrap">
+              <img src="../img/doacoes/instrucao-imposto-renda.jpg" alt="Passo a passo de como destinar parte do Imposto de Renda devido para a SOS Vidas via FNAS" loading="lazy">
+            </div>
+            <div class="instr-body">
+              <span class="instr-badge">Imposto de Renda</span>
+              <h3>Destine parte do seu IR</h3>
+              <p>A SOS Vidas <strong>já é regularizada junto ao FNAS</strong> (Fundo Nacional de Assistência Social), o que permite que você direcione parte do imposto devido para a nossa instituição sem nenhum custo adicional. Siga o tutorial da imagem para fazer a destinação na sua declaração.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="card mt-2" style="background:var(--yellow-light, #FFF8E1);box-shadow:none;display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap;border:1px solid #F5E08B;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#946A00" stroke-width="2" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>
+            <strong style="color:#7A5500;">Precisa de ajuda?</strong>
+            <span style="color:var(--text-light);"> Se tiver dúvidas sobre como executar o passo a passo, fale com nossa equipe no <a href="https://wa.me/551634415578?text=Olá!+Tenho+dúvidas+sobre+a+destinação+do+cupom+fiscal/IR+para+a+SOS+Vidas." style="color:var(--blue);font-weight:600;">WhatsApp</a> — temos prazer em orientar você.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--gray" aria-labelledby="faq-titulo">
+      <div class="container" style="max-width:720px;">
+        <h2 class="section-title" id="faq-titulo">Perguntas frequentes</h2>
+        <div role="list">
+          <div class="faq-item" role="listitem">
+            <p class="faq-q">Minha doação é dedutível do Imposto de Renda?</p>
+            <p class="faq-a">Sim. A SOS Vidas <strong>já é regularizada junto ao FNAS</strong> (Fundo Nacional de Assistência Social), o que permite a dedução da doação no Imposto de Renda. Veja na seção <a href="#apoio-titulo" style="color:var(--blue);font-weight:600;">"Outras formas de ajudar"</a> o tutorial passo a passo de como fazer a destinação. Em caso de dúvida, fale com a nossa equipe.</p>
+          </div>
+          <div class="faq-item" role="listitem">
+            <p class="faq-q">Recebo comprovante da doação?</p>
+            <p class="faq-a">Sim. Para doações via PIX, o comprovante bancário é suficiente. Para doações físicas, emitimos um recibo mediante solicitação.</p>
+          </div>
+          <div class="faq-item" role="listitem">
+            <p class="faq-q">Como saber que minha doação chegou às famílias?</p>
+            <p class="faq-a">Publicamos regularmente fotos e relatórios das atividades no Instagram @sos_vidass. Acesse também nossa página de <a href="transparencia.html" style="color:var(--blue);font-weight:600;">Transparência</a> para ver os relatórios completos.</p>
+          </div>
+          <div class="faq-item" role="listitem">
+            <p class="faq-q">Posso fazer uma doação recorrente?</p>
+            <p class="faq-a">Sim! Entre em contato pelo WhatsApp para combinar uma doação mensal e tornar-se um parceiro fixo da SOS Vidas.</p>
+          </div>
+          <div class="faq-item" role="listitem">
+            <p class="faq-q">A SOS Vidas tem CNPJ ativo?</p>
+            <p class="faq-a">Sim. Somos uma organização legalmente constituída. Os dados institucionais completos estão disponíveis em nossa página de <a href="transparencia.html" style="color:var(--blue);font-weight:600;">Transparência</a>.</p>
+          </div>
+        </div>
+        <div style="margin-top:2rem;text-align:center;">
+          <p style="color:var(--text-light);margin-bottom:1rem;">Ainda tem dúvidas?</p>
+          <a href="https://wa.me/551634415578?text=Olá!+Gostaria+de+informações+sobre+como+fazer+uma+doação+para+a+SOS+Vidas." class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
+            Falar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="../img/logo.png" alt="Logotipo SOS Vidas">
+            <span class="footer-logo-name">SOS Vidas</span>
+          </div>
+          <p>Projeto social sem fins lucrativos que promove inclusão, cuidado e dignidade para quem mais precisa em Ribeirão Preto – SP.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="../index.html">Início</a></li>
+            <li><a href="sobre.html">Sobre nós</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="transparencia.html">Transparência</a></li>
+            <li><a href="doacoes.html">Doações</a></li>
+            <li><a href="eventos.html">Eventos</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <address>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Rua Bolívia, 1296 – Vila Mariana<br>CEP 14075-250, Ribeirão Preto – SP
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 5.29 5.29l1.2-.75a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
+              (16) 3441-5578
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Seg–Sex, 08h às 17h
+            </div>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 SOS Vidas Ribeirão Preto · Associação SOS Vidas · CNPJ 30.339.161/0001-75</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/sos_vidass/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/OngSOSVidas/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+                    <a href="https://www.youtube.com/@ThalitaValezi" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a2.997 2.997 0 0 0-2.108-2.12C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.39.566A2.997 2.997 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a2.997 2.997 0 0 0 2.108 2.12C4.49 20.5 12 20.5 12 20.5s7.51 0 9.39-.566a2.997 2.997 0 0 0 2.108-2.12C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.75 15.568V8.432L15.818 12 9.75 15.568z"/></svg>
+          </a>
+<a href="https://wa.me/551634415578" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Copiar chave PIX (apenas os dígitos do CNPJ)
+    document.getElementById('btn-copiar')?.addEventListener('click', function() {
+      const chave = '30339161000175';
+      const textoEl = document.getElementById('btn-copiar-texto');
+      const original = textoEl.textContent;
+      navigator.clipboard.writeText(chave).then(() => {
+        textoEl.textContent = '✓ Chave copiada!';
+        this.style.background = 'var(--yellow)';
+        this.style.color = 'var(--text)';
+        setTimeout(() => {
+          textoEl.textContent = original;
+          this.style.background = '';
+          this.style.color = '';
+        }, 2500);
+      }).catch(() => {
+        textoEl.textContent = 'Erro — copie manualmente';
+        setTimeout(() => { textoEl.textContent = original; }, 2500);
+      });
+    });
+  </script>
+</body>
+</html>

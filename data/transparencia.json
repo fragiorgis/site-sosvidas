@@ -1,0 +1,333 @@
+{
+  "secoes": [
+    {
+      "id": "44756513-c507-4e63-a3f4-6d54a8a1565c",
+      "titulo": "Documentos institucionais",
+      "destaque": "institucionais",
+      "descricao": "",
+      "ordem": 10,
+      "publicada": true,
+      "documentos": [
+        {
+          "id": "82348a95-df0b-4c77-9070-2e0afd1f81b9",
+          "titulo": "Cartão CNPJ",
+          "descricao": "Comprovante de inscrição e de situação cadastral da Associação SOS Vidas.",
+          "selo": "CNPJ",
+          "arquivo": "/docs/institucional/cartao-cnpj.pdf",
+          "ordem": 10,
+          "publicado": true
+        },
+        {
+          "id": "df697330-7528-4ac9-800f-79ecf9c57cda",
+          "titulo": "Relação dos dirigentes",
+          "descricao": "Lista resumida dos atuais dirigentes da associação.",
+          "selo": "Diretoria",
+          "arquivo": "/docs/institucional/relacao-dirigentes.pdf",
+          "ordem": 20,
+          "publicado": true
+        },
+        {
+          "id": "b7975bd7-61e5-4a93-ba59-67cb18be33a3",
+          "titulo": "Relação completa dos dirigentes",
+          "descricao": "Documento detalhado da composição da diretoria.",
+          "selo": "Diretoria",
+          "arquivo": "/docs/institucional/relacao-dirigentes-completa.pdf",
+          "ordem": 30,
+          "publicado": true
+        },
+        {
+          "id": "0a825963-75db-4b3b-9d66-114f472a8017",
+          "titulo": "Registro da ata e estatuto",
+          "descricao": "Ata de constituição registrada em cartório com o estatuto social vigente.",
+          "selo": "Estatuto",
+          "arquivo": "/docs/institucional/registro-ata.pdf",
+          "ordem": 40,
+          "publicado": true
+        },
+        {
+          "id": "b93a549e-5151-44a5-919f-deab9b017c04",
+          "titulo": "Declaração de experiência",
+          "descricao": "Comprovação da experiência da instituição na assistência social.",
+          "selo": "2026",
+          "arquivo": "/docs/institucional/declaracao-experiencia-2026.pdf",
+          "ordem": 50,
+          "publicado": true
+        },
+        {
+          "id": "62da8df9-1d6c-4936-8ee9-b0036b08e28b",
+          "titulo": "Declaração de não remuneração",
+          "descricao": "Declaração assinada de que os dirigentes não recebem remuneração da entidade.",
+          "selo": "Diretoria",
+          "arquivo": "/docs/institucional/declaracao-nao-remuneracao.pdf",
+          "ordem": 60,
+          "publicado": true
+        },
+        {
+          "id": "55cf490c-309f-4727-921f-ce55d4d8d954",
+          "titulo": "Plano de ação 2024",
+          "descricao": "Planejamento estratégico das atividades, metas e diretrizes do exercício de 2024.",
+          "selo": "2024",
+          "arquivo": "/docs/institucional/plano-acao-2024.pdf",
+          "ordem": 70,
+          "publicado": true
+        },
+        {
+          "id": "973ba275-6097-4be2-b4bb-08aeb85ad927",
+          "titulo": "Regulamento de contratação de pessoal",
+          "descricao": "Regras e critérios para contratação de colaboradores da SOS Vidas.",
+          "selo": "Regulamento",
+          "arquivo": "/docs/institucional/regulamento-contratacao-pessoal.pdf",
+          "ordem": 80,
+          "publicado": true
+        },
+        {
+          "id": "946de723-e9b3-4a62-9e28-5418b0c7de60",
+          "titulo": "Regulamento de compras",
+          "descricao": "Procedimentos e critérios para aquisição de bens e contratação de serviços.",
+          "selo": "Regulamento",
+          "arquivo": "/docs/institucional/regulamento-compras.pdf",
+          "ordem": 90,
+          "publicado": true
+        },
+        {
+          "id": "d15a6259-40c2-43e9-8c35-a1700f8b81b1",
+          "titulo": "Plano de trabalho 2024",
+          "descricao": "Plano de trabalho detalhado das atividades e projetos executados em 2024.",
+          "selo": "2024",
+          "arquivo": "/docs/institucional/plano-trabalho-2024.pdf",
+          "ordem": 100,
+          "publicado": true
+        },
+        {
+          "id": "2c987393-c62c-477e-940b-6de2ccf58f59",
+          "titulo": "Lista dos prestadores 2024",
+          "descricao": "Relação de prestadores de serviços contratados pela instituição em 2024.",
+          "selo": "2024",
+          "arquivo": "/docs/institucional/lista-prestadores-2024.pdf",
+          "ordem": 110,
+          "publicado": true
+        },
+        {
+          "id": "e7af0482-b624-4158-87a8-89cfb4734113",
+          "titulo": "Nota de esclarecimento",
+          "descricao": "Posicionamento institucional sobre processos administrativos em curso.",
+          "selo": "Esclarecimento",
+          "arquivo": "/docs/institucional/nota-esclarecimento.pdf",
+          "ordem": 120,
+          "publicado": true
+        }
+      ]
+    },
+    {
+      "id": "2208b0ed-7273-483e-b0f0-7c2ad3919eeb",
+      "titulo": "Demonstrações financeiras 2024",
+      "destaque": "financeiras",
+      "descricao": "",
+      "ordem": 20,
+      "publicada": true,
+      "documentos": [
+        {
+          "id": "ac730752-7835-48b3-aa62-583c16c470e2",
+          "titulo": "Anexo 10 — 2024",
+          "descricao": "Anexo 10 assinado, referente à prestação de contas de 2024.",
+          "selo": "2024",
+          "arquivo": "/docs/relatorios/anexo-10-2024.pdf",
+          "ordem": 10,
+          "publicado": true
+        },
+        {
+          "id": "4b12ba98-cfcb-4c09-a1e1-c9a9c401fa14",
+          "titulo": "Balanço ECD 2024",
+          "descricao": "Balanço patrimonial de 2024 enviado à Escrituração Contábil Digital.",
+          "selo": "2024 — ECD",
+          "arquivo": "/docs/relatorios/balanco-ecd-2024.pdf",
+          "ordem": 20,
+          "publicado": true
+        },
+        {
+          "id": "376bd8d8-3b3a-453d-87c4-33f037019be5",
+          "titulo": "DRE ECD 2024",
+          "descricao": "Demonstração do resultado de 2024 enviada à Escrituração Contábil Digital.",
+          "selo": "2024 — ECD",
+          "arquivo": "/docs/relatorios/dre-ecd-2024.pdf",
+          "ordem": 30,
+          "publicado": true
+        },
+        {
+          "id": "037e2e23-7f5a-40fc-a245-8a7cbe37a268",
+          "titulo": "Recibo de entrega — ECD",
+          "descricao": "Recibo emitido pela Receita Federal da entrega da escrituração 2024.",
+          "selo": "2024",
+          "arquivo": "/docs/relatorios/recibo-ecd-2024.pdf",
+          "ordem": 40,
+          "publicado": true
+        }
+      ]
+    },
+    {
+      "id": "a32c45ac-3856-4381-8f1b-d9fcb920d4a0",
+      "titulo": "Demonstrações financeiras 2025",
+      "destaque": "financeiras",
+      "descricao": "",
+      "ordem": 30,
+      "publicada": true,
+      "documentos": [
+        {
+          "id": "392a6725-e33a-4413-9a87-67694e92268e",
+          "titulo": "Balanço patrimonial",
+          "descricao": "Demonstração do patrimônio e da situação financeira ao fim do exercício.",
+          "selo": "2025",
+          "arquivo": "/docs/relatorios/balanco-2025.pdf",
+          "ordem": 10,
+          "publicado": true
+        },
+        {
+          "id": "48b1b449-1a7c-4f13-b2fd-94251a6feec3",
+          "titulo": "DRE — Demonstração do resultado",
+          "descricao": "Receitas, despesas e resultado do exercício 2025.",
+          "selo": "2025",
+          "arquivo": "/docs/relatorios/dre-2025.pdf",
+          "ordem": 20,
+          "publicado": true
+        },
+        {
+          "id": "598bb533-f85f-45a7-a086-0eb4e669be87",
+          "titulo": "Notas explicativas",
+          "descricao": "Detalhamento contábil que acompanha as demonstrações financeiras (versão assinada).",
+          "selo": "2025 — Assinada",
+          "arquivo": "/docs/relatorios/notas-explicativas-2025.pdf",
+          "ordem": 30,
+          "publicado": true
+        },
+        {
+          "id": "2344787d-edbe-4162-9c7f-97c5ed21f024",
+          "titulo": "Notas explicativas às demonstrações contábeis",
+          "descricao": "Versão contábil completa das notas explicativas relativas às demonstrações de 2025.",
+          "selo": "2025 — Contábeis",
+          "arquivo": "/docs/relatorios/notas-explicativas-contabeis-2025.pdf",
+          "ordem": 40,
+          "publicado": true
+        },
+        {
+          "id": "31baa6d8-852f-4c1d-b0ec-a171f05fcadc",
+          "titulo": "Balanço ECD",
+          "descricao": "Balanço patrimonial enviado à Escrituração Contábil Digital.",
+          "selo": "2025 — ECD",
+          "arquivo": "/docs/relatorios/balanco-ecd-2025.pdf",
+          "ordem": 50,
+          "publicado": true
+        },
+        {
+          "id": "dbbfe44e-ee27-4836-9521-4113dac5b02f",
+          "titulo": "DRE ECD",
+          "descricao": "Demonstração do resultado enviada à Escrituração Contábil Digital.",
+          "selo": "2025 — ECD",
+          "arquivo": "/docs/relatorios/dre-ecd-2025.pdf",
+          "ordem": 60,
+          "publicado": true
+        },
+        {
+          "id": "65f7f0f2-151f-41fb-9413-f5bc27608d84",
+          "titulo": "Recibo de entrega — ECD",
+          "descricao": "Recibo emitido pela Receita Federal da entrega da escrituração 2025.",
+          "selo": "2025",
+          "arquivo": "/docs/relatorios/recibo-ecd-2025.pdf",
+          "ordem": 70,
+          "publicado": true
+        },
+        {
+          "id": "502c6aca-0079-4e5b-b40c-f97cfac84893",
+          "titulo": "Anexo RP-10",
+          "descricao": "Anexo de prestação de contas exigido por convênio de recurso público.",
+          "selo": "2025",
+          "arquivo": "/docs/relatorios/anexo-rp10-2025.pdf",
+          "ordem": 80,
+          "publicado": true
+        }
+      ]
+    },
+    {
+      "id": "d6f78443-b4ab-432d-a9e3-52d0e2785304",
+      "titulo": "Emenda federal liberada — Dep. Baleia Rossi (TC 129/2024)",
+      "destaque": "liberada",
+      "descricao": "Emenda parlamentar federal individual de autoria do Deputado Federal Baleia Rossi, no valor de R$ 40.000,00, repassada via Prefeitura Municipal de Ribeirão Preto (Fundo Municipal de Assistência Social) por meio do Termo de Colaboração TC 129/2024 — Processo Digital PMRP nº 2024.102343. Recurso pago em parcela única em 05/07/2024, aplicado no Serviço de Proteção Social Básica em Domicílio para Pessoas com Deficiência e Idosas.",
+      "ordem": 40,
+      "publicada": true,
+      "documentos": [
+        {
+          "id": "f89dd971-600c-4e3f-b42b-a93a4bd47e4e",
+          "titulo": "Termo de Colaboração TC 129/2024",
+          "descricao": "Instrumento jurídico que formaliza o repasse federal de R$ 40.000 entre a Prefeitura de Ribeirão Preto e a SOS Vidas.",
+          "selo": "02/07/2024",
+          "arquivo": "/docs/emenda/tc-129-2024-emenda.pdf",
+          "ordem": 10,
+          "publicado": true
+        },
+        {
+          "id": "9e1b2676-1782-4494-ae0d-c2d356638c22",
+          "titulo": "Termo de ciência e notificação",
+          "descricao": "Declaração das partes ao Tribunal de Contas do Estado de SP sobre o TC 129/2024.",
+          "selo": "02/07/2024",
+          "arquivo": "/docs/emenda/tc-129-2024-termo-ciencia.pdf",
+          "ordem": 20,
+          "publicado": true
+        },
+        {
+          "id": "a85196ac-8359-42eb-a474-10c2dcc972fc",
+          "titulo": "Relatório de transferência — R$ 40.000",
+          "descricao": "Comprovante do pagamento do valor integral em parcela única pela Prefeitura Municipal de Ribeirão Preto (Fundo Municipal de Assistência Social) à SOS Vidas.",
+          "selo": "05/07/2024 — Parcela única",
+          "arquivo": "/docs/emenda/relatorio-transferencia-parcela-unica.pdf",
+          "ordem": 30,
+          "publicado": true
+        },
+        {
+          "id": "7e15b70c-ed81-4b9a-b126-565980a77043",
+          "titulo": "1ª Rerratificação do TC 129/2024",
+          "descricao": "Prorroga a vigência do convênio por mais 5 meses (até 02/12/2025) e substitui membros da comissão de monitoramento.",
+          "selo": "16/06/2025 — 1ª Rerratificação",
+          "arquivo": "/docs/emenda/tc-129-2024-rerratificacao.pdf",
+          "ordem": 40,
+          "publicado": true
+        },
+        {
+          "id": "159b2ea9-f6bc-435f-8c29-ed8a8fa666c1",
+          "titulo": "Termo de ciência — 1ª Rerratificação",
+          "descricao": "Termo de ciência e notificação ao TCE-SP referente à 1ª Rerratificação do TC 129/2024.",
+          "selo": "16/06/2025 — 1ª Rerratificação",
+          "arquivo": "/docs/emenda/tc-129-2024-rerrat-termo-ciencia.pdf",
+          "ordem": 50,
+          "publicado": true
+        },
+        {
+          "id": "f11f9c41-83a1-4b4c-b32e-76b2b8627bbd",
+          "titulo": "Termo de ajuste e rerratificação",
+          "descricao": "Registra atualizações administrativas: troca de presidência (Rosangela → Talita), nova sede (Rua Bolívia), reajuste de aluguel e devolução do saldo remanescente de R$ 3.655,29 ao final da execução.",
+          "selo": "29/05/2026 — Ajuste",
+          "arquivo": "/docs/emenda/termo-ajuste-rerratificacao.pdf",
+          "ordem": 60,
+          "publicado": true
+        }
+      ]
+    },
+    {
+      "id": "f69339ca-7e2a-472e-9dd7-b0f6e5996d43",
+      "titulo": "Emenda estadual liberada — Dep. Rafael Silva",
+      "destaque": "liberada",
+      "descricao": "Emenda parlamentar estadual de autoria do Deputado Estadual Rafael Silva (Assembleia Legislativa do Estado de São Paulo), no valor de R$ 150.000,00, destinada à aquisição de equipamentos. Recurso liberado e pago em 06/07/2026, conforme Ofício Especial/2026.",
+      "ordem": 50,
+      "publicada": true,
+      "documentos": [
+        {
+          "id": "8d9203c5-5d98-486a-b7d7-d3d2186d8741",
+          "titulo": "Ofício Especial/2026 — R$ 150.000 pagos",
+          "descricao": "Ofício assinado pelo Dep. Estadual Rafael Silva confirmando o pagamento efetivado da emenda parlamentar de R$ 150.000 para aquisição de equipamentos pela SOS Vidas.",
+          "selo": "06/07/2026",
+          "arquivo": "/docs/emenda/oficio-emenda-paga-06-07-2026.pdf",
+          "ordem": 10,
+          "publicado": true
+        }
+      ]
+    }
+  ]
+}

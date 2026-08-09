@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Garantia de Direitos, Inclusão Social e Oficinas Socioeducativas: três programas da SOS Vidas para idosos, pessoas com deficiência e famílias em Ribeirão Preto.">
+  <title>Programas Sociais em Ribeirão Preto | SOS Vidas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ── Page hero (editorial) ── */
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&display=swap');
+
+    .page-hero {
+      background: #FAF7F2;
+      position: relative;
+      overflow: hidden;
+      padding-block: 4rem 4.5rem;
+      color: var(--text);
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(90deg, rgba(21,101,192,.04) 1px, transparent 1px);
+      background-size: 80px 100%;
+      pointer-events: none;
+    }
+    .page-hero .container { position: relative; }
+    .page-hero .badge {
+      background: rgba(21, 101, 192, .08);
+      color: var(--blue);
+      border: 1px solid rgba(21, 101, 192, .18);
+    }
+    .page-hero h1 {
+      font-family: 'Fraunces', 'Outfit', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      color: #0F1E33;
+      margin-bottom: 1rem;
+      max-width: 18ch;
+    }
+    .page-hero h1 em {
+      font-style: italic;
+      font-weight: 700;
+      color: var(--blue);
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .page-hero h1 em {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 24' preserveAspectRatio='none'><path d='M3 16 C 80 4, 160 22, 297 9' stroke='%23FDD835' stroke-width='10' stroke-linecap='round' fill='none'/></svg>");
+      background-repeat: no-repeat;
+      background-position: 0 88%;
+      background-size: 100% 22%;
+    }
+    .page-hero h1 em::after {
+      content: '';
+    }
+    .page-hero p {
+      color: #4A5468;
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    /* ── Service sections ── */
+    .service-section {
+      padding-block: 4rem;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .service-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3.5rem;
+      }
+      .service-grid.reverse .service-text { order: 2; }
+      .service-grid.reverse .service-img  { order: 1; }
+    }
+
+    /* ── Service photo (polaroid editorial) ── */
+    .service-photo {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      margin-inline: auto;
+      aspect-ratio: 5 / 6;
+    }
+    .service-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--yellow);
+      transform: rotate(-2.5deg);
+      border-radius: 12px;
+      z-index: 0;
+    }
+    .service-photo--pink::before { background: var(--pink); opacity: .18; }
+    .service-photo--blue::before { background: var(--blue); opacity: .14; }
+    .service-photo img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px -16px rgba(15, 30, 51, .28);
+      transform: rotate(1.5deg);
+      z-index: 1;
+    }
+    .service-photo-caption {
+      position: absolute;
+      bottom: -28px;
+      right: 8px;
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: .82rem;
+      color: var(--text-light);
+      z-index: 2;
+    }
+    .service-photo-caption::before { content: '↗ '; color: var(--pink); font-style: normal; }
+
+    /* ── Bullet list ── */
+    .service-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.25rem 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+    .service-list li {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      font-size: .97rem;
+      color: var(--text);
+    }
+    .service-list li svg { flex-shrink: 0; }
+
+    /* ── CTA section (cream editorial) ── */
+    .cta-section {
+      padding-block: 5rem;
+      background: #FAF7F2;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(15, 30, 51, .08);
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(90deg, rgba(21,101,192,.04) 1px, transparent 1px);
+      background-size: 80px 100%;
+      pointer-events: none;
+    }
+    .cta-section .container { position: relative; }
+    .cta-section h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      color: #0F1E33;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: -.018em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .cta-section h2 em {
+      font-style: italic;
+      font-weight: 700;
+      color: var(--blue);
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 24' preserveAspectRatio='none'><path d='M3 16 C 80 4, 160 22, 297 9' stroke='%23FDD835' stroke-width='10' stroke-linecap='round' fill='none'/></svg>");
+      background-repeat: no-repeat;
+      background-position: 0 88%;
+      background-size: 100% 22%;
+    }
+    .cta-section p  { color: #4A5468; max-width: 560px; margin-inline: auto; font-size: 1.05rem; line-height: 1.7; }
+    .cta-btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .8rem 1.6rem;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--blue);
+      color: var(--blue);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: background var(--transition), border-color var(--transition);
+      cursor: pointer;
+      background: transparent;
+    }
+    .cta-btn-ghost:hover { background: var(--blue); color: var(--white); }
+    .cta-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../index.html" class="header-logo" aria-label="SOS Vidas — Ir para a página inicial">
+        <img src="../img/logo.png" alt="Logotipo SOS Vidas">
+        <div class="header-logo-text">
+          <span class="header-logo-name">SOS Vidas</span>
+          <span class="header-logo-sub">Ribeirão Preto</span>
+        </div>
+      </a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <a href="../index.html">Início</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="servicos.html" class="active" aria-current="page">Serviços</a>
+        <a href="transparencia.html">Transparência</a>
+        <a href="doacoes.html">Doações</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="contato.html">Contato</a>
+        <a href="doacoes.html" class="nav-cta">Doe agora</a>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Navegação mobile">
+    <a href="../index.html">Início</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="servicos.html" class="active">Serviços</a>
+    <a href="transparencia.html">Transparência</a>
+    <a href="doacoes.html">Doações</a>
+    <a href="eventos.html">Eventos</a>
+    <a href="contato.html">Contato</a>
+    <a href="doacoes.html" class="nav-cta">Doe agora</a>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="page-hero" aria-labelledby="servicos-titulo">
+      <div class="container">
+        <span class="badge badge--yellow" style="margin-bottom:1rem;">Nossos Programas</span>
+        <h1 id="servicos-titulo">Três programas que <em>transformam</em> realidades</h1>
+        <p>Três programas integrados que garantem direitos, promovem inclusão e fortalecem vínculos familiares e comunitários em Ribeirão Preto.</p>
+      </div>
+    </section>
+
+    <!-- PROGRAMA 01 — GARANTIA DE DIREITOS -->
+    <section id="garantia" class="service-section" aria-labelledby="g-titulo">
+      <div class="container">
+        <div class="service-grid">
+          <div class="service-text">
+            <span class="badge badge--blue" style="margin-bottom:1rem;">Programa 01</span>
+            <h2 id="g-titulo" style="font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:1rem;">Garantia de Direitos</h2>
+            <p style="color:var(--text-light);line-height:1.7;">Prestamos atendimento humanizado e orientação para acesso a direitos sociais, garantindo que o beneficiário seja encaminhado e respeitado em sua integridade. Nossa assistente social acompanha cada caso individualmente.</p>
+            <ul class="service-list" aria-label="O que oferecemos em Garantia de Direitos">
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Orientação jurídica e social
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Encaminhamento a órgãos públicos
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Acompanhamento de benefícios sociais
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Atendimento individualizado
+              </li>
+            </ul>
+          </div>
+          <div class="service-img">
+            <div class="service-photo service-photo--blue">
+              <img src="../img/galeria/visita-domiciliar.jpg" alt="Equipe técnica da SOS Vidas em visita domiciliar a idosa beneficiária em Ribeirão Preto" loading="lazy">
+              <span class="service-photo-caption">Visita domiciliar — acompanhamento técnico</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMA 02 — INCLUSÃO SOCIAL -->
+    <section id="inclusao" class="service-section section--gray" aria-labelledby="i-titulo">
+      <div class="container">
+        <div class="service-grid reverse">
+          <div class="service-text">
+            <span class="badge badge--pink" style="margin-bottom:1rem;">Programa 02</span>
+            <h2 id="i-titulo" style="font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:1rem;">Inclusão Social</h2>
+            <p style="color:var(--text-light);line-height:1.7;">Promovemos acessibilidade e participação ativa de idosos e pessoas com deficiência na comunidade, combatendo qualquer forma de exclusão. Acreditamos que toda pessoa tem o direito de ser vista e valorizada.</p>
+            <ul class="service-list" aria-label="O que oferecemos em Inclusão Social">
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2.2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Atividades de integração comunitária
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2.2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Oficinas de autonomia e independência
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2.2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Visitas domiciliares periódicas
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2.2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Rodas de conversa e escuta ativa
+              </li>
+            </ul>
+          </div>
+          <div class="service-img">
+            <div class="service-photo service-photo--pink">
+              <img src="../img/galeria/roda-conversa.jpg" alt="Roda de conversa com famílias e idosos na sede da SOS Vidas em Vila Mariana" loading="lazy">
+              <span class="service-photo-caption">Roda de conversa — sede SOS Vidas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMA 03 — OFICINAS SOCIOEDUCATIVAS -->
+    <section id="oficinas" class="service-section" aria-labelledby="o-titulo">
+      <div class="container">
+        <div class="service-grid">
+          <div class="service-text">
+            <span class="badge badge--yellow" style="margin-bottom:1rem;">Programa 03</span>
+            <h2 id="o-titulo" style="font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:1rem;">Oficinas Socioeducativas</h2>
+            <p style="color:var(--text-light);line-height:1.7;">Realizamos atividades de capacitação profissional e geração de renda, além de oficinas culturais, recreativas e ações voltadas ao fortalecimento dos vínculos familiares e comunitários.</p>
+            <ul class="service-list" aria-label="O que oferecemos nas Oficinas Socioeducativas">
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--yellow-dark)" stroke-width="2.2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Cursos de capacitação profissional
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--yellow-dark)" stroke-width="2.2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Oficinas culturais e recreativas
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--yellow-dark)" stroke-width="2.2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Celebrações de datas especiais
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--yellow-dark)" stroke-width="2.2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Distribuição de cestas e donativos
+              </li>
+            </ul>
+          </div>
+          <div class="service-img">
+            <div class="service-photo">
+              <img src="../img/galeria/equipe-acolhimento.jpg" alt="Equipe da SOS Vidas acolhendo criança em tratamento oncológico em oficina socioeducativa" loading="lazy">
+              <span class="service-photo-caption">Acolhimento da equipe — SOS Vidas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section text-center" aria-labelledby="cta-titulo">
+      <div class="container">
+        <h2 id="cta-titulo">Precisa de <em>atendimento</em>?</h2>
+        <p>Nossa equipe técnica — assistente social e psicóloga — está disponível de segunda a sexta-feira, das 08h às 17h, para orientar e encaminhar você e sua família.</p>
+        <div class="cta-btns">
+          <a href="https://wa.me/551634415578" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Falar no WhatsApp (abre em nova aba)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a href="contato.html" class="cta-btn-ghost">
+            Ver canais de contato
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="../img/logo.png" alt="Logotipo SOS Vidas">
+            <span class="footer-logo-name">SOS Vidas</span>
+          </div>
+          <p>Projeto social sem fins lucrativos que promove inclusão, cuidado e dignidade para quem mais precisa em Ribeirão Preto – SP.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="../index.html">Início</a></li>
+            <li><a href="sobre.html">Sobre nós</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="transparencia.html">Transparência</a></li>
+            <li><a href="doacoes.html">Doações</a></li>
+            <li><a href="eventos.html">Eventos</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <address>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Rua Bolívia, 1296 – Vila Mariana<br>CEP 14075-250, Ribeirão Preto – SP
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 5.29 5.29l1.2-.75a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
+              (16) 3441-5578
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Seg–Sex, 08h às 17h
+            </div>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 SOS Vidas Ribeirão Preto · Associação SOS Vidas · CNPJ 30.339.161/0001-75</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/sos_vidass/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/OngSOSVidas/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+                    <a href="https://www.youtube.com/@ThalitaValezi" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a2.997 2.997 0 0 0-2.108-2.12C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.39.566A2.997 2.997 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a2.997 2.997 0 0 0 2.108 2.12C4.49 20.5 12 20.5 12 20.5s7.51 0 9.39-.566a2.997 2.997 0 0 0 2.108-2.12C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.75 15.568V8.432L15.818 12 9.75 15.568z"/></svg>
+          </a>
+<a href="https://wa.me/551634415578" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

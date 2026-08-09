@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Veja relatórios anuais, destinação de cada real doado, impacto mensal e parceiros da SOS Vidas Ribeirão Preto. Transparência total para nossos doadores.">
+  <title>Transparência e Prestação de Contas | SOS Vidas RP</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ── Page hero (editorial) ── */
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&display=swap');
+
+    .page-hero {
+      background: #FAF7F2;
+      position: relative;
+      overflow: hidden;
+      padding-block: 4rem 4.5rem;
+      color: var(--text);
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(90deg, rgba(21,101,192,.04) 1px, transparent 1px);
+      background-size: 80px 100%;
+      pointer-events: none;
+    }
+    .page-hero .container { position: relative; }
+    .page-hero .badge {
+      background: rgba(21, 101, 192, .08);
+      color: var(--blue);
+      border: 1px solid rgba(21, 101, 192, .18);
+    }
+    .page-hero h1 {
+      font-family: 'Fraunces', 'Outfit', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      color: #0F1E33;
+      margin-bottom: 1rem;
+      max-width: 18ch;
+    }
+    .page-hero h1 em {
+      font-style: italic;
+      font-weight: 700;
+      color: var(--blue);
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .page-hero h1 em {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 24' preserveAspectRatio='none'><path d='M3 16 C 80 4, 160 22, 297 9' stroke='%23FDD835' stroke-width='10' stroke-linecap='round' fill='none'/></svg>");
+      background-repeat: no-repeat;
+      background-position: 0 88%;
+      background-size: 100% 22%;
+    }
+    .page-hero h1 em::after {
+      content: '';
+    }
+    .page-hero p {
+      color: #4A5468;
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    /* Relatórios */
+    .relatorio-card {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .relatorio-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+    .relatorio-icon {
+      width: 52px; height: 52px; flex-shrink: 0;
+      background: var(--blue-light);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+    }
+    .relatorio-info { flex: 1; }
+    .relatorio-info h3 { font-size: 1rem; color: var(--text); margin-bottom: .2rem; }
+    .relatorio-info p  { font-size: .88rem; color: var(--text-light); }
+    .relatorio-badge   { font-size: .78rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: .04em; }
+
+    .relatorio-dl {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .45rem .9rem;
+      background: var(--blue);
+      color: var(--white);
+      border-radius: var(--radius);
+      font-size: .88rem; font-weight: 600;
+      transition: background var(--transition);
+      white-space: nowrap;
+    }
+    .relatorio-dl:hover { background: var(--blue-dark); }
+    .relatorio-dl:focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; }
+    .relatorio-grid { display: grid; gap: 1rem; }
+    .relatorio-icon--pdf {
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
+
+    /* Impacto tabela */
+    .impacto-table {
+      width: 100%; border-collapse: collapse; font-size: .95rem;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .impacto-table th {
+      background: var(--blue);
+      color: var(--white);
+      padding: .875rem 1.25rem;
+      text-align: left;
+      font-weight: 600;
+      font-family: 'Outfit', sans-serif;
+    }
+    .impacto-table td { padding: .8rem 1.25rem; border-bottom: 1px solid var(--gray-dark); }
+    .impacto-table tr:last-child td { border-bottom: none; }
+    .impacto-table tr:nth-child(even) td { background: var(--gray); }
+    .impacto-table td:last-child { font-weight: 600; color: var(--blue); }
+
+    /* Barras de destinação */
+    .barra-label {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: .4rem; font-weight: 600; font-size: .95rem;
+    }
+    .barra-label span { font-size: .9rem; color: var(--text-light); font-weight: 400; }
+    .barra-track {
+      height: 14px;
+      background: var(--gray-dark);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+    }
+    .barra-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 1s ease;
+    }
+    .barra-fill--blue   { background: var(--blue); }
+    .barra-fill--yellow { background: var(--yellow-dark); }
+    .barra-fill--pink   { background: var(--pink); }
+    .barra-fill--green  { background: #2E7D32; }
+
+    /* Subcategoria de documentos */
+    .doc-category { margin-top: 2.5rem; }
+    .doc-category:first-of-type { margin-top: 1.5rem; }
+    .doc-category-header {
+      display: flex; align-items: baseline; gap: .75rem; flex-wrap: wrap;
+      margin-bottom: 1rem;
+      padding-bottom: .75rem;
+      border-bottom: 2px solid var(--gray-dark);
+    }
+    .doc-category-header h3 {
+      font-family: 'Fraunces', 'Outfit', serif;
+      font-weight: 500;
+      font-size: 1.35rem;
+      color: var(--blue-dark);
+      margin: 0;
+    }
+    .doc-category-header h3 em { font-style: italic; font-weight: 700; color: var(--pink); }
+    .doc-category-header .count {
+      font-size: .82rem; font-weight: 600; color: var(--text-light);
+      background: var(--gray); padding: .15rem .65rem; border-radius: 999px;
+    }
+    .doc-category-description {
+      max-width: 680px;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+      font-size: .92rem;
+      line-height: 1.65;
+    }
+    .documentos-state {
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--gray-dark);
+      border-radius: var(--radius-lg);
+      background: var(--gray);
+      color: var(--text-light);
+    }
+    .documentos-state--error {
+      border-left: 4px solid #C62828;
+      background: #FFF5F5;
+      color: var(--text);
+    }
+    .documentos-state--error p { margin: .35rem 0 .9rem; color: var(--text-light); }
+    .documentos-empty { color: var(--text-light); font-size: .95rem; }
+    .documentos-retry {
+      padding: .55rem 1rem;
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--blue);
+      color: var(--white);
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .documentos-retry:hover { background: var(--blue-dark); }
+    .documentos-retry:focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; }
+    .documentos-noscript {
+      display: block;
+      margin-top: 1rem;
+      padding: 1rem 1.25rem;
+      border-left: 4px solid var(--yellow-dark);
+      background: #FFF8DC;
+      color: var(--text);
+    }
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    /* Parceiros — status indicator */
+    .parceiro-card {
+      display: flex; flex-direction: column; gap: .85rem;
+      padding: 1.4rem 1.5rem;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--gray-dark);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .parceiro-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .parceiro-card--liberado  { border-top-color: #2E7D32; }
+    .parceiro-card--andamento { border-top-color: var(--blue); }
+    .parceiro-card--aguardando { border-top-color: var(--yellow-dark); }
+    .parceiro-card--continuo  { border-top-color: var(--pink); }
+    .parceiro-card-top { display: flex; align-items: center; gap: .85rem; }
+    .parceiro-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--blue-light); color: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .parceiro-card h4 { font-size: 1rem; margin: 0; line-height: 1.25; }
+    .parceiro-card p  { font-size: .88rem; color: var(--text-light); line-height: 1.55; }
+
+    .status-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .04em;
+      padding: .3rem .65rem; border-radius: 999px;
+      width: fit-content;
+    }
+    .status-badge::before {
+      content: ''; display: block;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: currentColor; flex-shrink: 0;
+    }
+    .status-liberado   { color: #1B5E20; background: #E8F5E9; border: 1px solid #C8E6C9; }
+    .status-andamento  { color: #0D47A1; background: var(--blue-light); border: 1px solid rgba(21,101,192,.18); }
+    .status-aguardando { color: #8B6E00; background: #FFF8DC; border: 1px solid #F5E08B; }
+    .status-continuo   { color: #AD1457; background: var(--pink-light); border: 1px solid rgba(233,30,140,.16); }
+
+    /* Pipeline legend */
+    .status-pipeline {
+      display: flex; gap: .5rem; flex-wrap: wrap;
+      margin: 1rem 0 1.75rem;
+      padding: 1rem 1.25rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+    .status-pipeline-label {
+      font-size: .78rem; font-weight: 600;
+      color: var(--text-light);
+      text-transform: uppercase; letter-spacing: .04em;
+      margin-right: .25rem;
+    }
+
+    /* CTA contato */
+    .cta-contato {
+      background: var(--gray);
+      border-left: 4px solid var(--blue);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      padding: 1.5rem 2rem;
+    }
+    .cta-contato h3 { color: var(--blue); margin-bottom: .5rem; }
+    .cta-contato p  { color: var(--text-light); margin-bottom: 1rem; font-size: .95rem; }
+
+    @media (min-width: 768px) {
+      .relatorio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .destinacao-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+      .parceiros-grid  { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    }
+    @media (min-width: 1024px) {
+      .parceiros-grid  { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .relatorio-card { align-items: flex-start; flex-wrap: wrap; }
+      .relatorio-info { min-width: calc(100% - 78px); }
+      .relatorio-dl { margin-left: 77px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../index.html" class="header-logo" aria-label="SOS Vidas — Ir para a página inicial">
+        <img src="../img/logo.png" alt="Logotipo SOS Vidas">
+        <div class="header-logo-text">
+          <span class="header-logo-name">SOS Vidas</span>
+          <span class="header-logo-sub">Ribeirão Preto</span>
+        </div>
+      </a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <a href="../index.html">Início</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="transparencia.html" class="active" aria-current="page">Transparência</a>
+        <a href="doacoes.html">Doações</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="contato.html">Contato</a>
+        <a href="doacoes.html" class="nav-cta">Doe agora</a>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Navegação mobile">
+    <a href="../index.html">Início</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="transparencia.html" class="active">Transparência</a>
+    <a href="doacoes.html">Doações</a>
+    <a href="eventos.html">Eventos</a>
+    <a href="contato.html">Contato</a>
+    <a href="doacoes.html" class="nav-cta">Doe agora</a>
+  </nav>
+
+  <main>
+
+    <section class="page-hero" aria-labelledby="transp-titulo">
+      <div class="container">
+        <span class="badge badge--yellow" style="margin-bottom:1rem;">Prestação de Contas</span>
+        <h1 id="transp-titulo">Transparência que <em>constrói</em> confiança</h1>
+        <p>Acreditamos que a confiança se constrói com clareza. Aqui você encontra informações sobre nossas atividades, destinação de recursos e impacto social.</p>
+      </div>
+    </section>
+
+    <!-- DOCUMENTOS PARA DOWNLOAD -->
+    <section class="section" aria-labelledby="rel-titulo">
+      <div class="container">
+        <h2 class="section-title" id="rel-titulo">Documentos para consulta pública</h2>
+        <p class="section-subtitle">Toda a documentação institucional, financeira e de convênios da SOS Vidas está disponível para download. Estes documentos comprovam a regularidade da instituição e a aplicação responsável dos recursos.</p>
+
+        <p id="documentos-status" class="visually-hidden" role="status" aria-live="polite"></p>
+        <div id="documentos-transparencia" aria-busy="true">
+          <p class="documentos-state">Carregando documentos para consulta pública…</p>
+        </div>
+        <noscript>
+          <p class="documentos-noscript">Ative o JavaScript para consultar a lista de documentos. Se precisar de ajuda, use nossa <a href="contato.html">página de contato</a>.</p>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- IMPACTO SOCIAL -->
+    <section class="section section--gray" aria-labelledby="impacto-titulo">
+      <div class="container">
+        <h2 class="section-title" id="impacto-titulo">Impacto social — famílias atendidas</h2>
+        <p class="section-subtitle">Número de famílias em situação de vulnerabilidade atendidas mensalmente em 2026.</p>
+        <div style="overflow-x:auto;">
+          <table class="impacto-table" aria-label="Famílias atendidas por mês em 2026">
+            <thead>
+              <tr>
+                <th scope="col">Mês</th>
+                <th scope="col">Garantia de Direitos</th>
+                <th scope="col">Inclusão Social</th>
+                <th scope="col">Oficinas</th>
+                <th scope="col">Total de famílias</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Janeiro</td><td>22</td><td>18</td><td>14</td><td>54</td></tr>
+              <tr><td>Fevereiro</td><td>20</td><td>16</td><td>12</td><td>48</td></tr>
+              <tr><td>Março</td><td>24</td><td>20</td><td>16</td><td>60</td></tr>
+              <tr><td>Abril</td><td>23</td><td>19</td><td>15</td><td>57</td></tr>
+              <tr><td>Maio</td><td>25</td><td>21</td><td>14</td><td>60</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:1rem;font-size:.88rem;color:var(--text-light);">* Dados atualizados mensalmente pela equipe técnica.</p>
+      </div>
+    </section>
+
+    <!-- DESTINAÇÃO DE RECURSOS -->
+    <section class="section" aria-labelledby="dest-titulo">
+      <div class="container">
+        <h2 class="section-title" id="dest-titulo">Destinação de recursos</h2>
+        <p class="section-subtitle">Como cada real arrecadado em doações é utilizado pela SOS Vidas.</p>
+        <div class="destinacao-grid" style="display:grid;gap:2rem;">
+          <div>
+            <div class="barra-label">Atendimento direto às famílias <span>62%</span></div>
+            <div class="barra-track" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" aria-label="62% destinado ao atendimento direto"><div class="barra-fill barra-fill--blue" style="width:62%"></div></div>
+
+            <div class="barra-label">Eventos e atividades comunitárias <span>18%</span></div>
+            <div class="barra-track" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100" aria-label="18% destinado a eventos"><div class="barra-fill barra-fill--pink" style="width:18%"></div></div>
+
+            <div class="barra-label">Capacitação da equipe técnica <span>12%</span></div>
+            <div class="barra-track" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" aria-label="12% destinado à capacitação"><div class="barra-fill barra-fill--yellow" style="width:12%"></div></div>
+
+            <div class="barra-label">Manutenção e infraestrutura <span>8%</span></div>
+            <div class="barra-track" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100" aria-label="8% destinado à infraestrutura"><div class="barra-fill barra-fill--green" style="width:8%"></div></div>
+          </div>
+          <div>
+            <div class="card" style="background:var(--blue-light);box-shadow:none;">
+              <h3 style="color:var(--blue-dark);margin-bottom:.75rem;">Financiamento público</h3>
+
+              <div style="display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin-bottom:.4rem;">
+                <strong style="color:var(--text);">Emenda federal — Dep. Baleia Rossi</strong>
+                <span class="status-badge status-liberado">Liberada</span>
+              </div>
+              <p style="font-size:.92rem;color:var(--text-light);line-height:1.7;">
+                Emenda parlamentar federal individual no valor de <strong style="color:var(--text);">R$&nbsp;40.000</strong>, formalizada pelo <strong style="color:var(--text);">TC 129/2024</strong> junto à Prefeitura de Ribeirão Preto e paga em <strong style="color:var(--text);">parcela única em 05/07/2024</strong>. Recurso aplicado no Serviço de Proteção Social Básica em Domicílio para Pessoas com Deficiência e Idosas, com devolução do saldo remanescente de R$&nbsp;3.655,29 ao término da execução.
+              </p>
+
+              <hr style="border:none;border-top:1px solid rgba(21,101,192,.18);margin:1rem 0;">
+
+              <div style="display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin-bottom:.4rem;">
+                <strong style="color:var(--text);">Emenda estadual — Dep. Rafael Silva</strong>
+                <span class="status-badge status-liberado">Liberada</span>
+              </div>
+              <p style="font-size:.92rem;color:var(--text-light);line-height:1.7;">
+                Emenda parlamentar estadual no valor de <strong style="color:var(--text);">R$&nbsp;150.000</strong>, destinada à <strong style="color:var(--text);">aquisição de equipamentos</strong>. Pagamento efetivado em <strong style="color:var(--text);">06/07/2026</strong>, conforme Ofício Especial/2026 da Assembleia Legislativa do Estado de São Paulo.
+              </p>
+
+              <hr style="border:none;border-top:1px solid rgba(21,101,192,.18);margin:1rem 0;">
+
+              <div style="display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin-bottom:.4rem;">
+                <strong style="color:var(--text);">Veículo para a equipe técnica</strong>
+                <span class="status-badge status-aguardando">Aguardando</span>
+              </div>
+              <p style="font-size:.92rem;color:var(--text-light);line-height:1.7;">
+                Doação de um <strong style="color:var(--text);">veículo para transporte</strong> da equipe técnica nas visitas domiciliares. A conquista <em>ainda não foi efetivada</em> — segue em tratativa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARCEIROS -->
+    <section class="section section--gray" aria-labelledby="parc-titulo">
+      <div class="container">
+        <h2 class="section-title" id="parc-titulo">Parceiros e apoiadores</h2>
+        <p class="section-subtitle">Pessoas, parlamentares e organizações que apoiam a SOS Vidas. Cada apoio tem um status — você acompanha em que ponto cada parceria está.</p>
+
+        <div class="status-pipeline" aria-label="Legenda de status das parcerias">
+          <span class="status-pipeline-label">Status:</span>
+          <span class="status-badge status-aguardando">Aguardando</span>
+          <span class="status-badge status-andamento">Em andamento</span>
+          <span class="status-badge status-liberado">Liberado / concluído</span>
+          <span class="status-badge status-continuo">Contínuo</span>
+        </div>
+
+        <div class="parceiros-grid" style="display:grid;gap:1rem;">
+
+          <article class="parceiro-card parceiro-card--liberado">
+            <div class="parceiro-card-top">
+              <div class="parceiro-icon" style="background:#E8F5E9;color:#2E7D32;" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h.01"/><path d="M15 9h.01"/><path d="M9 13h.01"/><path d="M15 13h.01"/></svg>
+              </div>
+              <h4>Dep. Baleia Rossi</h4>
+            </div>
+            <span class="status-badge status-liberado">Emenda federal liberada</span>
+            <p>Emenda federal individual de R$ 40 mil (TC 129/2024) — paga em parcela única em 05/07/2024, aplicada no Serviço de Proteção Social Básica em Domicílio.</p>
+          </article>
+
+          <article class="parceiro-card parceiro-card--liberado">
+            <div class="parceiro-card-top">
+              <div class="parceiro-icon" style="background:#E8F5E9;color:#2E7D32;" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h.01"/><path d="M15 9h.01"/><path d="M9 13h.01"/><path d="M15 13h.01"/></svg>
+              </div>
+              <h4>Dep. Rafael Silva</h4>
+            </div>
+            <span class="status-badge status-liberado">Emenda estadual liberada</span>
+            <p>Emenda estadual de R$ 150 mil para aquisição de equipamentos — pagamento efetivado em 06/07/2026, conforme Ofício Especial/2026.</p>
+          </article>
+
+          <article class="parceiro-card parceiro-card--aguardando">
+            <div class="parceiro-card-top">
+              <div class="parceiro-icon" style="background:#FFF8DC;color:#8B6E00;" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h14"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="16.5" cy="17.5" r="2.5"/><path d="M3 17V7a2 2 0 0 1 2-2h9v12"/><path d="M14 8h4l3 4v5h-2"/></svg>
+              </div>
+              <h4>Veículo para a equipe técnica</h4>
+            </div>
+            <span class="status-badge status-aguardando">Aguardando</span>
+            <p>Doação de veículo para visitas domiciliares — em tratativa, ainda não efetivada.</p>
+          </article>
+
+          <article class="parceiro-card parceiro-card--andamento">
+            <div class="parceiro-card-top">
+              <div class="parceiro-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg>
+              </div>
+              <h4>Via Brasil</h4>
+            </div>
+            <span class="status-badge status-andamento">Parceria ativa</span>
+            <p>Parceira em eventos e capacitações para as mães e famílias atendidas pelo projeto.</p>
+          </article>
+
+          <article class="parceiro-card parceiro-card--andamento">
+            <div class="parceiro-card-top">
+              <div class="parceiro-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><path d="M4 7l8-5 8 5"/><path d="M4 17l8 5 8-5"/></svg>
+              </div>
+              <h4>Gota Dourada</h4>
+            </div>
+            <span class="status-badge status-andamento">Parceria ativa</span>
+            <p>Apoio recorrente em itens e ações da SOS Vidas.</p>
+          </article>
+
+          <article class="parceiro-card parceiro-card--andamento">
+            <div class="parceiro-card-top">
+              <div class="parceiro-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M8 8V5a4 4 0 0 1 8 0v3"/></svg>
+              </div>
+              <h4>Abiduch Presentes</h4>
+            </div>
+            <span class="status-badge status-andamento">Parceria ativa</span>
+            <p>Apoiadora com presentes e brindes para eventos e famílias atendidas.</p>
+          </article>
+
+          <article class="parceiro-card parceiro-card--andamento">
+            <div class="parceiro-card-top">
+              <div class="parceiro-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+              </div>
+              <h4>Skay Fire</h4>
+            </div>
+            <span class="status-badge status-andamento">Parceria ativa</span>
+            <p>Parceira no apoio às ações comunitárias e eventos da SOS Vidas.</p>
+          </article>
+
+          <article class="parceiro-card parceiro-card--andamento">
+            <div class="parceiro-card-top">
+              <div class="parceiro-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6v4l4 6v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-6l4-6V3z"/><path d="M9 7h6"/></svg>
+              </div>
+              <h4>Base Química</h4>
+            </div>
+            <span class="status-badge status-andamento">Parceria ativa</span>
+            <p>Apoio com produtos de limpeza e higiene para a manutenção da sede e famílias.</p>
+          </article>
+
+          <article class="parceiro-card parceiro-card--andamento">
+            <div class="parceiro-card-top">
+              <div class="parceiro-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V8l7-4 7 4v13"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+              </div>
+              <h4>Indústria Dadinho</h4>
+            </div>
+            <span class="status-badge status-andamento">Parceria ativa</span>
+            <p>Doações de produtos e apoio recorrente às ações da instituição.</p>
+          </article>
+
+          <article class="parceiro-card parceiro-card--andamento">
+            <div class="parceiro-card-top">
+              <div class="parceiro-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><path d="M5 9c0-4 3-7 7-7s7 3 7 7"/><path d="M5 9c0 4 3 7 7 7"/><path d="M19 9c0 4-3 7-7 7"/></svg>
+              </div>
+              <h4>Planti Ruber</h4>
+            </div>
+            <span class="status-badge status-andamento">Parceria ativa</span>
+            <p>Parceira no fornecimento de itens para os programas da SOS Vidas.</p>
+          </article>
+
+          <article class="parceiro-card parceiro-card--continuo">
+            <div class="parceiro-card-top">
+              <div class="parceiro-icon" style="background:var(--pink-light);color:var(--pink);" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <h4>Comunidade local</h4>
+            </div>
+            <span class="status-badge status-continuo">Apoio contínuo</span>
+            <p>Doadores individuais que contribuem com alimentos, vestimentas e itens de higiene durante todo o ano.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA CONTATO -->
+    <section class="section">
+      <div class="container" style="max-width:720px;">
+        <div class="cta-contato" role="note">
+          <h3>Quer mais informações?</h3>
+          <p>Entre em contato com nossa equipe para solicitar documentos complementares, esclarecimentos sobre a destinação de recursos ou informações sobre como contribuir.</p>
+          <div class="flex-gap">
+            <a href="contato.html" class="btn btn-secondary">Falar com a equipe</a>
+            <a href="https://wa.me/551634415578?text=Olá!+Gostaria+de+mais+informações+sobre+a+transparência+da+SOS+Vidas." class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="../img/logo.png" alt="Logotipo SOS Vidas">
+            <span class="footer-logo-name">SOS Vidas</span>
+          </div>
+          <p>Projeto social sem fins lucrativos que promove inclusão, cuidado e dignidade para quem mais precisa em Ribeirão Preto – SP.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="../index.html">Início</a></li>
+            <li><a href="sobre.html">Sobre nós</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="transparencia.html">Transparência</a></li>
+            <li><a href="doacoes.html">Doações</a></li>
+            <li><a href="eventos.html">Eventos</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <address>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Rua Bolívia, 1296 – Vila Mariana<br>CEP 14075-250, Ribeirão Preto – SP
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 5.29 5.29l1.2-.75a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
+              (16) 3441-5578
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Seg–Sex, 08h às 17h
+            </div>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 SOS Vidas Ribeirão Preto · Associação SOS Vidas · CNPJ 30.339.161/0001-75</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/sos_vidass/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/OngSOSVidas/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+                    <a href="https://www.youtube.com/@ThalitaValezi" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a2.997 2.997 0 0 0-2.108-2.12C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.39.566A2.997 2.997 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a2.997 2.997 0 0 0 2.108 2.12C4.49 20.5 12 20.5 12 20.5s7.51 0 9.39-.566a2.997 2.997 0 0 0 2.108-2.12C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.75 15.568V8.432L15.818 12 9.75 15.568z"/></svg>
+          </a>
+<a href="https://wa.me/551634415578" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script type="module" src="../js/transparencia.js"></script>
+</body>
+</html>

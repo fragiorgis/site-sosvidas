@@ -1,0 +1,31 @@
+:root {
+  /* Brand colors */
+  --blue:       #1565C0;
+  --blue-dark:  #0D47A1;
+  --blue-light: #E3F2FD;
+  --yellow:     #FDD835;
+  --yellow-dark:#F9A825;
+  --pink:       #E91E8C;
+  --pink-light: #FCE4F5;
+
+  /* Neutrals */
+  --white:      #FFFFFF;
+  --gray:       #F5F5F5;
+  --gray-dark:  #E0E0E0;
+  --text:       #212121;
+  --text-light: #616161;
+
+  /* UI tokens */
+  --radius:     8px;
+  --radius-lg:  16px;
+  --shadow:     0 2px 8px rgba(0, 0, 0, 0.10);
+  --shadow-md:  0 4px 16px rgba(0, 0, 0, 0.14);
+  --transition: 0.2s ease;
+
+  /* Layout */
+  --container:  1200px;
+  --header-h:   72px;
+
+  /* WhatsApp */
+  --whatsapp:   #25D366;
+}

@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = ".netlify-dist"
+
+[build.environment]
+  NODE_VERSION = "24.15.0"
+  NPM_FLAGS = "--ignore-scripts"
+
+[context.production]
+  command = "npm run build"
+
+[context.deploy-preview]
+  command = "npm run build"
+
+[context.branch-deploy]
+  command = "npm run build"

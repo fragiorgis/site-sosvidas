@@ -1,0 +1,16 @@
+{
+  "name": "sosvidas-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "validate:content": "node scripts/validate-transparencia.mjs",
+    "validate:site": "node scripts/validate-site.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run validate:content && npm run validate:site && npm test",
+    "build": "npm run check && node scripts/prepare-dist.mjs"
+  }
+}
