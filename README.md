@@ -1,37 +1,36 @@
 # SOS Vidas — site institucional
 
-Site estático da Associação SOS Vidas, com gestão dos documentos de Transparência por Pages CMS, GitHub e Netlify.
+Site estático da Associação SOS Vidas, publicado no Netlify, com painel próprio para gestão dos documentos de transparência e backend no Supabase.
 
 ## Arquitetura
 
 ```text
-Editor por e-mail -> Pages CMS -> GitHub -> validações -> Netlify -> site público
+Visitante -> página pública -> Supabase Data API/Storage
+Funcionário -> /admin/ -> Supabase Auth -> RLS -> banco/Storage
+Desenvolvedor -> GitHub -> validações -> Netlify
 ```
 
-- O Pages CMS é somente a interface de edição.
-- GitHub é a fonte de verdade para código, JSON e PDFs.
-- O Netlify executa todas as validações antes de publicar.
-- O site público não consulta Pages CMS ou GitHub durante a visita.
-- Falha do CMS impede edição, mas não derruba o site.
+- O funcionário usa somente `/admin/` com e-mail e senha.
+- O cadastro público é desabilitado.
+- A escrita exige autenticação e presença em `admin_users`.
+- O público consulta somente itens publicados.
+- `data/transparencia.json` e `docs/` permanecem como fallback e rollback inicial.
+- A chave publishable é pública; chaves secretas nunca entram no frontend.
 
 ## Arquivos principais
 
-- `.pages.yml`: formulário e limites do Pages CMS.
-- `data/transparencia.json`: seções e documentos exibidos.
-- `js/transparencia.js`: renderização segura da página.
-- `scripts/validate-transparencia.mjs`: valida JSON, caminhos e conteúdo dos PDFs.
-- `scripts/validate-site.mjs`: valida arquivos, referências e controles essenciais.
-- `scripts/prepare-dist.mjs`: cria o artefato público sem expor testes e configuração.
-- `tests/`: testes automatizados.
-- `netlify.toml`: build e publicação.
-- `_headers`: cabeçalhos HTTP de segurança e cache.
+- `admin/index.html`: painel administrativo.
+- `js/admin.js`: fluxo de gestão e upload.
+- `js/supabase-api.js`: cliente Auth, REST e Storage sem dependências externas.
+- `js/supabase-config.js`: URL e chave pública do projeto.
+- `js/transparencia.js`: consulta Supabase com fallback local.
+- `supabase/migrations/`: schema, RLS, bucket e auditoria.
+- `scripts/migrate-supabase.mjs`: migração idempotente dos 31 PDFs.
+- `_headers`: CSP e cabeçalhos de segurança.
 
 ## Desenvolvimento local
 
-Pré-requisitos:
-
-- Node.js 24;
-- Python 3 apenas para o servidor HTTP local.
+Pré-requisito: Node.js 24.
 
 ```bash
 npm run check
@@ -40,19 +39,20 @@ cd .netlify-dist
 python3 -m http.server 8765
 ```
 
-Abra `http://localhost:8765/pages/transparencia.html`.
+Abra:
 
-Não abra a página diretamente com `file://`, pois o navegador bloqueia a leitura do JSON local.
-Para desenvolver sem gerar o artefato, também é possível servir a raiz do repositório depois de `npm run check`.
+- site: `http://localhost:8765/`
+- transparência: `http://localhost:8765/pages/transparencia.html`
+- painel: `http://localhost:8765/admin/`
 
 ## Comandos
 
 ```bash
-npm run validate:content  # JSON, UUIDs, paths, existência, tamanho e assinatura dos PDFs
-npm run validate:site     # links locais, integração da página, headers e segredos óbvios
-npm test                  # 11 testes automatizados
-npm run check             # todas as verificações acima
-npm run build             # valida e gera o artefato público em .netlify-dist/
+npm run check                  # conteúdo, site e 15 testes automatizados
+npm run build                  # gera .netlify-dist/
+npm run migrate:supabase:dry   # valida a migração sem alterar o Supabase
+npm run migrate:supabase       # migra usando .env.local
+npm run verify:supabase        # valida leitura pública e bloqueio administrativo
 ```
 
 ## Documentação
@@ -61,7 +61,3 @@ npm run build             # valida e gera o artefato público em .netlify-dist/
 - [Operação pelo funcionário](OPERACAO_TRANSPARENCIA.md)
 - [Testes e validação](TESTES_E_VALIDACAO.md)
 - [Segurança e incidentes](SECURITY.md)
-
-## Regra principal
-
-Nunca coloque no repositório um rascunho, credencial ou documento ainda não autorizado para divulgação. Se o repositório for público, um arquivo enviado ao Git poderá permanecer no histórico mesmo depois de apagado.

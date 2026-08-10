@@ -8,6 +8,7 @@ const outputDir = path.join(rootDir, '.netlify-dist');
 
 const publicEntries = [
   'index.html',
+  'admin',
   'pages',
   'css',
   'js',
@@ -35,7 +36,7 @@ for (const entry of publicEntries) {
   });
 }
 
-const forbiddenEntries = ['.pages.yml', 'scripts', 'tests', 'package.json', 'netlify.toml'];
+const forbiddenEntries = ['supabase', 'scripts', 'tests', 'package.json', 'netlify.toml', '.env', '.env.local'];
 for (const entry of forbiddenEntries) {
   if (fs.existsSync(path.join(outputDir, entry))) {
     throw new Error(`Arquivo interno incluído no artefato público: ${entry}`);

@@ -89,14 +89,16 @@ if (/\.innerHTML\s*=/.test(transparencyScript)) {
 const secretPatterns = [
   { name: 'token GitHub', regex: /(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,})/ },
   { name: 'chave privada', regex: /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/ },
-  { name: 'access key AWS', regex: /AKIA[0-9A-Z]{16}/ }
+  { name: 'access key AWS', regex: /AKIA[0-9A-Z]{16}/ },
+  { name: 'chave secreta Supabase', regex: /sb_secret_[A-Za-z0-9_-]{20,}/ },
+  { name: 'service role Supabase preenchida', regex: /SUPABASE_SERVICE_ROLE_KEY\s*=\s*[^\s#]+/ }
 ];
 const securityFiles = [
   ...walk(path.join(rootDir, 'pages'), '.html'),
+  ...walk(path.join(rootDir, 'admin'), '.html'),
   ...walk(path.join(rootDir, 'js'), '.js'),
   path.join(rootDir, 'index.html'),
   path.join(rootDir, 'data', 'transparencia.json'),
-  path.join(rootDir, '.pages.yml'),
   path.join(rootDir, 'netlify.toml')
 ];
 
@@ -110,14 +112,19 @@ for (const securityFile of securityFiles) {
 }
 
 for (const required of [
-  '.pages.yml',
   '_headers',
   'netlify.toml',
   'package.json',
+  'admin/index.html',
+  'css/admin.css',
   'data/transparencia.json',
+  'js/admin.js',
+  'js/supabase-api.js',
+  'js/supabase-config.js',
   'js/transparencia.js',
   'scripts/validate-transparencia.mjs',
-  'scripts/prepare-dist.mjs'
+  'scripts/prepare-dist.mjs',
+  'supabase/migrations/202608090001_transparencia.sql'
 ]) {
   if (!fs.existsSync(path.join(rootDir, required))) errors.push(`Arquivo obrigatório ausente: ${required}`);
 }
@@ -134,6 +141,17 @@ for (const header of [
 
 if (!fs.existsSync(path.join(rootDir, 'robots.txt'))) warnings.push('robots.txt não encontrado.');
 if (!fs.existsSync(path.join(rootDir, 'sitemap.xml'))) warnings.push('sitemap.xml não encontrado.');
+
+const adminScript = fs.readFileSync(path.join(rootDir, 'js', 'admin.js'), 'utf8');
+if (/\.innerHTML\s*=/.test(adminScript)) errors.push('admin.js não pode inserir conteúdo editorial com innerHTML.');
+
+const supabaseConfig = fs.readFileSync(path.join(rootDir, 'js', 'supabase-config.js'), 'utf8');
+if (!supabaseConfig.includes('https://csgvhdjypxufcsjvmubd.supabase.co')) {
+  errors.push('Configuração pública do Supabase aponta para projeto inesperado.');
+}
+if (!headers.includes('https://csgvhdjypxufcsjvmubd.supabase.co')) {
+  errors.push('CSP não permite conexão com o projeto Supabase configurado.');
+}
 
 warnings.forEach(warning => console.warn(`AVISO: ${warning}`));
 if (errors.length > 0) {

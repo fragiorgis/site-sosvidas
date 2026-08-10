@@ -1,95 +1,57 @@
-# Manual do editor — Transparência
+# Operação do painel de transparência
 
-Este manual é destinado ao funcionário responsável pelos documentos. Ele não precisa de GitHub, Netlify ou conhecimento de programação.
+## Entrar
 
-## Antes de publicar
+1. Acesse `https://sosvidas.netlify.app/admin/`.
+2. Informe o e-mail e a senha fornecidos pelo administrador.
+3. Clique em **Entrar**.
 
-Confirme que:
+O funcionário não precisa de GitHub, Netlify ou conta no painel do Supabase.
 
-- o documento é a versão final;
-- a instituição autorizou a divulgação pública;
-- não há CPF, RG, endereço pessoal, telefone pessoal, dados bancários, prontuário ou nome de beneficiário;
-- assinaturas e carimbos podem ser exibidos;
-- o arquivo abre normalmente e está legível;
-- o antivírus do computador não apresentou alerta;
-- o PDF tem preferencialmente até 5 MB e nunca mais que 20 MB;
-- o nome do arquivo não contém dados pessoais.
+## Criar uma categoria
 
-Em caso de dúvida sobre privacidade, não faça o upload e consulte o responsável institucional.
+1. Clique em **Nova categoria**.
+2. Informe o título.
+3. Se desejar, copie um trecho exato do título para o campo de destaque.
+4. Use ordem 10, 20, 30 etc.
+5. Escolha se a categoria ficará publicada.
+6. Clique em **Salvar categoria**.
 
-## Entrar no painel
+Exemplo: ao criar “Demonstrações financeiras 2026”, use ordem 40 se ela deve aparecer depois da categoria com ordem 30.
 
-1. Acesse `https://app.pagescms.org/` pelo link fornecido pelo administrador.
-2. Use o mesmo e-mail que recebeu o convite.
-3. Abra o repositório da SOS Vidas.
-4. Entre em **Transparência**.
+## Adicionar um PDF
 
-Nunca use ou solicite a senha do GitHub/Netlify do desenvolvedor.
+1. Na categoria correta, clique em **Adicionar PDF**.
+2. Informe título e descrição.
+3. Use o selo para ano ou tipo, como `2026` ou `ECD`.
+4. Defina a ordem.
+5. Escolha um PDF de até 25 MB.
+6. Marque **Documento publicado**.
+7. Clique em **Salvar documento** e aguarde 100%.
+8. Use **Ver página pública** para conferir.
 
-## Adicionar documento em seção existente
+## Editar ou substituir
 
-1. Abra **Transparência**.
-2. Localize e expanda a seção correta.
-3. Em **Documentos**, escolha adicionar um item.
-4. Preencha:
-   - **Título:** nome público do documento;
-   - **Descrição:** uma ou duas frases em texto simples;
-   - **Selo curto:** ano, ECD, Regulamento etc.;
-   - **Arquivo PDF:** selecione ou envie o arquivo;
-   - **Ordem:** use 10, 20, 30...;
-   - **Exibir documento no site:** ligado.
-5. Revise e salve uma única vez.
-6. Aguarde o deploy e abra a página pública em janela anônima.
-7. Teste o botão PDF.
+1. Clique em **Editar**.
+2. Altere os textos ou a categoria.
+3. Para substituir o PDF, selecione um novo arquivo; caso contrário, deixe o campo vazio.
+4. Salve.
 
-## Criar novo exercício ou seção
+O PDF anterior é preservado no Storage e no histórico de auditoria para recuperação pelo desenvolvedor.
 
-1. Em **Seções de documentos**, adicione uma seção.
-2. Preencha o título, por exemplo `Demonstrações financeiras 2026`.
-3. Opcionalmente, em **Palavra em destaque**, copie exatamente `financeiras`.
-4. Use texto simples no contexto da seção.
-5. Defina a ordem e mantenha **Exibir seção no site** ligado.
-6. Adicione os documentos e salve.
+## Ocultar, publicar e arquivar
 
-O identificador é criado pelo sistema. Não precisa ser digitado.
+- **Ocultar:** tira o documento da página, mas mantém o registro ativo.
+- **Publicar:** volta a exibir um documento oculto.
+- **Arquivar:** retira o documento da operação normal e preserva seus dados e PDF.
 
-## Corrigir título ou descrição
+O painel não permite exclusão física. Isso reduz o risco de perda acidental.
 
-1. Abra o documento.
-2. Altere somente os campos necessários.
-3. Não reenvie o PDF se ele não mudou.
-4. Salve e confira o site.
+## Boas práticas
 
-## Substituir PDF
-
-1. Confirme que o novo arquivo substitui formalmente o anterior.
-2. No documento correspondente, selecione o novo PDF.
-3. Não sobrescreva outros itens com nome parecido.
-4. Salve e teste o conteúdo, não apenas se o link abre.
-
-Prefira nomes com ano ou data, por exemplo `balanco-2026.pdf`.
-
-## Ocultar sem apagar
-
-Para remover temporariamente um documento da lista:
-
-1. Desligue **Exibir documento no site**.
-2. Salve e confira a página.
-
-Para ocultar toda a seção, desligue **Exibir seção no site**.
-
-Ocultar não remove o PDF de uma URL direta. Se o documento tiver dado sigiloso, avise o administrador imediatamente.
-
-## Se ocorrer erro
-
-- Não clique em salvar repetidamente.
-- Anote o horário e tire uma captura da mensagem.
-- Confira se o PDF tem menos de 20 MB.
-- Tente novamente somente uma vez.
-- Se continuar, envie a captura e o nome do documento ao administrador.
-
-O site público continuará mostrando a última versão válida quando a nova alteração for reprovada pelo build.
-
-## Saída ou troca de funcionário
-
-O acesso é individual. Avise o administrador para revogar o e-mail antigo e convidar o substituto. Convites e contas nunca devem ser compartilhados.
+- Publique somente documentos formalmente autorizados.
+- Não inclua CPF, assinatura desnecessária, endereço residencial ou outros dados pessoais sem base legal.
+- Confira título, ano e categoria antes de publicar.
+- Não compartilhe a senha do painel.
+- Ao terminar, clique em **Sair**, especialmente em computador compartilhado.
+- Em caso de dúvida, oculte o documento e procure o administrador.
