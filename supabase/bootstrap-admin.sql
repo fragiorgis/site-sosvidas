@@ -12,3 +12,4 @@ select au.user_id, u.email, au.created_at
 from public.admin_users au
 join auth.users u on u.id = au.user_id;
 
+-- Restaure o placeholder depois da execução; não armazene e-mail neste arquivo.
