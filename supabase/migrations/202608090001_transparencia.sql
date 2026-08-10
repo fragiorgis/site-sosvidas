@@ -162,6 +162,16 @@ grant insert, update on public.transparency_documents to authenticated;
 grant select on public.transparency_audit_log to authenticated;
 grant usage, select on sequence public.transparency_audit_log_id_seq to authenticated;
 
+-- O projeto foi criado sem exposição automática de tabelas. A chave secret
+-- usada pelo script local ainda precisa de privilégios SQL; service_role
+-- continua restrita ao backend e ignora RLS por definição do Supabase.
+grant usage on schema public to service_role;
+grant all on public.admin_users to service_role;
+grant all on public.transparency_sections to service_role;
+grant all on public.transparency_documents to service_role;
+grant all on public.transparency_audit_log to service_role;
+grant usage, select on sequence public.transparency_audit_log_id_seq to service_role;
+
 drop policy if exists "Administrator can verify own access" on public.admin_users;
 create policy "Administrator can verify own access"
 on public.admin_users for select to authenticated

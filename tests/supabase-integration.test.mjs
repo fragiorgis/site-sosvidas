@@ -40,7 +40,8 @@ test('migration SQL mantém escrita restrita e arquivos PDF limitados', () => {
   assert.match(sql, /public\.is_transparency_admin\(\)/);
   assert.match(sql, /file_size_limit, allowed_mime_types/);
   assert.match(sql, /26214400/);
+  assert.match(sql, /grant all on public\.transparency_sections to service_role/i);
+  assert.match(sql, /grant all on public\.transparency_documents to service_role/i);
   assert.doesNotMatch(sql, /grant delete on public\.transparency_documents/i);
   assert.doesNotMatch(sql, /grant insert on public\.admin_users/i);
 });
-

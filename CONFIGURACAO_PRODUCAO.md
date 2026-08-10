@@ -49,6 +49,9 @@ Use uma chave secret/service role somente na máquina do desenvolvedor:
 4. Preencha `SUPABASE_SERVICE_ROLE_KEY` em `.env.local`.
 5. Nunca faça commit desse arquivo.
 
+Se a migration inicial já tiver sido executada antes dos grants de backend,
+execute também `supabase/migrations/202608090002_service_role.sql` no SQL Editor.
+
 Execute:
 
 ```bash
