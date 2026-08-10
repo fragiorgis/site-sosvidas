@@ -14,6 +14,7 @@
     "build": "npm run check && node scripts/prepare-dist.mjs",
     "migrate:supabase": "node --env-file=.env.local scripts/migrate-supabase.mjs",
     "migrate:supabase:dry": "node scripts/migrate-supabase.mjs --dry-run",
-    "verify:supabase": "node scripts/verify-supabase.mjs"
+    "verify:supabase": "node scripts/verify-supabase.mjs",
+    "verify:supabase:admin": "node --env-file=.env.local scripts/verify-supabase-admin.mjs"
   }
 }

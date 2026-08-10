@@ -26,6 +26,7 @@ Depois de aplicar schema e migrar:
 
 ```bash
 npm run verify:supabase
+npm run verify:supabase:admin
 ```
 
 Resultado esperado:

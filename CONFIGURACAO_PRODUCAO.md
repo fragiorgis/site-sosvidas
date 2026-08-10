@@ -58,6 +58,7 @@ Execute:
 npm run migrate:supabase:dry
 npm run migrate:supabase
 npm run verify:supabase
+npm run verify:supabase:admin
 ```
 
 O script pode ser executado novamente: UUIDs e caminhos antigos são preservados e os registros são atualizados sem duplicação.
