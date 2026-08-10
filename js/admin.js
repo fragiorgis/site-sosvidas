@@ -44,8 +44,8 @@ function node(tag, className = '', text = '') {
   return element;
 }
 
-function actionButton(text, handler, { danger = false } = {}) {
-  const button = node('button', `small-button${danger ? ' small-button--danger' : ''}`, text);
+function actionButton(text, handler) {
+  const button = node('button', 'small-button', text);
   button.type = 'button';
   button.addEventListener('click', handler);
   return button;
@@ -112,13 +112,13 @@ function statusPill(text, modifier) {
 }
 
 function renderDocument(documentData) {
-  const row = node('article', `document-row${documentData.archived_at ? ' document-row--archived' : ''}`);
+  const row = node('article', 'document-row');
   const content = node('div');
   const titleLine = node('div', 'document-title');
+  const isPublished = documentData.published && !documentData.archived_at;
   titleLine.append(node('strong', '', documentData.title));
   if (documentData.badge) titleLine.append(node('span', 'badge', documentData.badge));
-  if (documentData.archived_at) titleLine.append(statusPill('Arquivado', 'archived'));
-  else if (documentData.published) titleLine.append(statusPill('Publicado', 'published'));
+  if (isPublished) titleLine.append(statusPill('Publicado', 'published'));
   else titleLine.append(statusPill('Oculto', 'hidden'));
   const description = node('p', 'document-description', documentData.description);
   content.append(titleLine, description);
@@ -130,12 +130,7 @@ function renderDocument(documentData) {
   open.rel = 'noopener';
   actions.append(open, actionButton('Editar', () => openDocumentDialog(documentData)));
 
-  if (!documentData.archived_at) {
-    actions.append(
-      actionButton(documentData.published ? 'Ocultar' : 'Publicar', () => toggleDocument(documentData)),
-      actionButton('Arquivar', () => archiveDocument(documentData), { danger: true })
-    );
-  }
+  actions.append(actionButton(isPublished ? 'Ocultar' : 'Publicar', () => toggleDocument(documentData)));
   row.append(content, actions);
   return row;
 }
@@ -147,10 +142,10 @@ function renderSection(section) {
   const title = node('h2', '', section.title);
   const metadata = node('div', 'section-meta');
   const documents = state.documents.filter(documentData => documentData.section_id === section.id);
-  const activeCount = documents.filter(documentData => !documentData.archived_at).length;
+  const documentCount = documents.length;
   metadata.append(
     statusPill(section.published ? 'Categoria publicada' : 'Categoria oculta', section.published ? 'published' : 'hidden'),
-    node('span', '', `${activeCount} ${activeCount === 1 ? 'documento ativo' : 'documentos ativos'}`),
+    node('span', '', `${documentCount} ${documentCount === 1 ? 'documento' : 'documentos'}`),
     node('span', '', `Ordem ${section.position}`)
   );
   heading.append(title, metadata);
@@ -233,7 +228,7 @@ function openDocumentDialog(documentData = null, sectionId = '') {
   $('document-description').value = documentData?.description || '';
   $('document-badge').value = documentData?.badge || '';
   $('document-position').value = documentData?.position ?? 10;
-  $('document-published').checked = documentData?.published ?? true;
+  $('document-published').checked = documentData ? documentData.published && !documentData.archived_at : true;
   $('document-file').value = '';
   $('document-file').required = !documentData;
   $('document-file-help').textContent = documentData ? '(opcional — escolha somente para substituir)' : '(obrigatório)';
@@ -245,25 +240,13 @@ function openDocumentDialog(documentData = null, sectionId = '') {
 async function toggleDocument(documentData) {
   hideMessage();
   try {
-    await updateRow('transparency_documents', documentData.id, { published: !documentData.published }, await requireSession());
-    await loadContent();
-    showMessage(documentData.published ? 'Documento ocultado da página pública.' : 'Documento publicado com sucesso.', 'success');
-  } catch (error) {
-    showMessage(friendlyError(error), 'error');
-  }
-}
-
-async function archiveDocument(documentData) {
-  const confirmed = window.confirm(`Arquivar “${documentData.title}”? O documento deixará de aparecer no site, mas o registro e o PDF serão preservados.`);
-  if (!confirmed) return;
-  hideMessage();
-  try {
+    const isPublished = documentData.published && !documentData.archived_at;
     await updateRow('transparency_documents', documentData.id, {
-      published: false,
-      archived_at: new Date().toISOString()
+      published: !isPublished,
+      archived_at: null
     }, await requireSession());
     await loadContent();
-    showMessage('Documento arquivado. O arquivo original foi preservado.', 'success');
+    showMessage(isPublished ? 'Documento ocultado da página pública.' : 'Documento publicado com sucesso.', 'success');
   } catch (error) {
     showMessage(friendlyError(error), 'error');
   }
@@ -428,4 +411,3 @@ async function initialize() {
 }
 
 initialize();
-
