@@ -87,7 +87,7 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: #1565c0
 .badge { background: #edf5ff; color: #15558f; border-radius: 999px; padding: .2rem .5rem; font-size: .7rem; font-weight: 700; }
 .section-empty { padding: 1.4rem; color: #737e90; text-align: center; }
 
-.admin-dialog { width: min(620px, calc(100% - 2rem)); border: 0; border-radius: 18px; padding: 0; color: #142033; box-shadow: 0 30px 90px rgba(8, 18, 33, .28); }
+.admin-dialog { width: min(620px, calc(100% - 2rem)); margin: auto; border: 0; border-radius: 18px; padding: 0; color: #142033; box-shadow: 0 30px 90px rgba(8, 18, 33, .28); }
 .admin-dialog--wide { width: min(760px, calc(100% - 2rem)); }
 .admin-dialog::backdrop { background: rgba(10, 20, 35, .64); backdrop-filter: blur(3px); }
 .dialog-form { padding: clamp(1.25rem, 4vw, 2rem); max-height: min(88vh, 850px); overflow-y: auto; }
@@ -115,4 +115,3 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: #1565c0
   .form-grid { grid-template-columns: 1fr; gap: .7rem; }
   .section-actions, .document-actions { width: 100%; }
 }
-
