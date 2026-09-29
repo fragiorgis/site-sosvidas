@@ -1,63 +1,29 @@
 # SOS Vidas — site institucional
 
-Site estático da Associação SOS Vidas, publicado no Netlify, com painel próprio para gestão dos documentos de transparência e backend no Supabase.
+Site público estático da Associação SOS Vidas. O destino de produção é o cPanel de `sosvidasrp.org.br`. A versão pública contém sete páginas HTML, estilos, imagens, 31 PDFs e `data/transparencia.json`. A página de transparência lê esse arquivo local; não há login ou dependência do Supabase no site publicado.
 
-## Arquitetura
+## Estrutura
 
-```text
-Visitante -> página pública -> Supabase Data API/Storage
-Funcionário -> /admin/ -> Supabase Auth -> RLS -> banco/Storage
-Desenvolvedor -> GitHub -> validações -> Netlify
-```
+- `index.html` e `pages/`: conteúdo e páginas públicas.
+- `css/`, `img/` e `js/main.js`: apresentação e navegação.
+- `data/transparencia.json`, `docs/` e `js/transparencia.js`: categorias e documentos de transparência.
+- `apache/`: regras de HTTPS, segurança e cache para o cPanel.
+- `.cpanel.yml`: implantação dos arquivos públicos pelo Git do cPanel.
+- `scripts/`: validação do conteúdo e preparação do pacote público.
 
-- O funcionário usa somente `/admin/` com e-mail e senha.
-- O cadastro público é desabilitado.
-- A escrita exige autenticação e presença em `admin_users`.
-- O público consulta somente itens publicados.
-- `data/transparencia.json` e `docs/` permanecem como fallback e rollback inicial.
-- A chave publishable é pública; chaves secretas nunca entram no frontend.
+O painel antigo de administração e a integração com Supabase foram retirados do projeto em 29/09/2026. O CMS no cPanel ainda será desenvolvido; até lá, atualizar o site exige alterar os arquivos do repositório e publicar uma nova versão. Consulte [MIGRACAO_DOMINIO.md](MIGRACAO_DOMINIO.md) para a sequência de implantação e o desenho do CMS.
 
-## Arquivos principais
+## Verificação local
 
-- `admin/index.html`: painel administrativo.
-- `js/admin.js`: fluxo de gestão e upload.
-- `js/supabase-api.js`: cliente Auth, REST e Storage sem dependências externas.
-- `js/supabase-config.js`: URL e chave pública do projeto.
-- `js/transparencia.js`: consulta Supabase com fallback local.
-- `supabase/migrations/`: schema, RLS, bucket e auditoria.
-- `scripts/migrate-supabase.mjs`: migração idempotente dos 31 PDFs.
-- `_headers`: CSP e cabeçalhos de segurança.
-
-## Desenvolvimento local
-
-Pré-requisito: Node.js 24.
+Requer Node.js 24.
 
 ```bash
 npm run check
-npm run build
-cd .netlify-dist
+npm run build:cpanel
+cd .cpanel-dist
 python3 -m http.server 8765
 ```
 
-Abra:
+Abra `http://localhost:8765/` e `http://localhost:8765/pages/transparencia.html`.
 
-- site: `http://localhost:8765/`
-- transparência: `http://localhost:8765/pages/transparencia.html`
-- painel: `http://localhost:8765/admin/`
-
-## Comandos
-
-```bash
-npm run check                  # conteúdo, site e 15 testes automatizados
-npm run build                  # gera .netlify-dist/
-npm run migrate:supabase:dry   # valida a migração sem alterar o Supabase
-npm run migrate:supabase       # migra usando .env.local
-npm run verify:supabase        # valida leitura pública e bloqueio administrativo
-```
-
-## Documentação
-
-- [Configuração de produção](CONFIGURACAO_PRODUCAO.md)
-- [Operação pelo funcionário](OPERACAO_TRANSPARENCIA.md)
-- [Testes e validação](TESTES_E_VALIDACAO.md)
-- [Segurança e incidentes](SECURITY.md)
+`npm run build:cpanel` gera `.cpanel-dist/`, sem arquivos internos. A publicação do cPanel usa os mesmos arquivos públicos por meio de `.cpanel.yml`. O comando `npm run build` mantém o artefato da Netlify apenas durante a transição.

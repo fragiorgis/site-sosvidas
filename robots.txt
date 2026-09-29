@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.sosvidas.org.br/sitemap.xml
+Sitemap: https://sosvidasrp.org.br/sitemap.xml

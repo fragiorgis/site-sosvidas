@@ -9,12 +9,9 @@
   "scripts": {
     "validate:content": "node scripts/validate-transparencia.mjs",
     "validate:site": "node scripts/validate-site.mjs",
-    "test": "node --test tests/*.test.mjs",
+    "test": "node --test tests/transparencia-ui.test.mjs tests/validate-transparencia.test.mjs",
     "check": "npm run validate:content && npm run validate:site && npm test",
     "build": "npm run check && node scripts/prepare-dist.mjs",
-    "migrate:supabase": "node --env-file=.env.local scripts/migrate-supabase.mjs",
-    "migrate:supabase:dry": "node scripts/migrate-supabase.mjs --dry-run",
-    "verify:supabase": "node scripts/verify-supabase.mjs",
-    "verify:supabase:admin": "node --env-file=.env.local scripts/verify-supabase-admin.mjs"
+    "build:cpanel": "npm run check && node scripts/prepare-dist.mjs --cpanel"
   }
 }

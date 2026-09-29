@@ -4,20 +4,23 @@ import { fileURLToPath } from 'node:url';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const rootDir = path.resolve(path.dirname(scriptPath), '..');
-const outputDir = path.join(rootDir, '.netlify-dist');
+const target = process.argv[2] === '--cpanel' ? 'cpanel' : 'netlify';
+const outputDir = path.join(rootDir, target === 'cpanel' ? '.cpanel-dist' : '.netlify-dist');
 
 const publicEntries = [
   'index.html',
-  'admin',
   'pages',
-  'css',
-  'js',
+  'css/reset.css',
+  'css/style.css',
+  'css/variables.css',
+  'js/main.js',
+  'js/transparencia.js',
   'img',
   'docs',
   'data',
   'robots.txt',
   'sitemap.xml',
-  '_headers'
+  target === 'cpanel' ? 'apache/.htaccess' : '_headers'
 ];
 
 for (const entry of publicEntries) {
@@ -30,13 +33,20 @@ fs.rmSync(outputDir, { recursive: true, force: true });
 fs.mkdirSync(outputDir, { recursive: true });
 
 for (const entry of publicEntries) {
-  fs.cpSync(path.join(rootDir, entry), path.join(outputDir, entry), {
+  const destination = entry === 'apache/.htaccess' ? '.htaccess' : entry;
+  fs.mkdirSync(path.dirname(path.join(outputDir, destination)), { recursive: true });
+  fs.cpSync(path.join(rootDir, entry), path.join(outputDir, destination), {
     recursive: true,
     preserveTimestamps: true
   });
 }
 
-const forbiddenEntries = ['supabase', 'scripts', 'tests', 'package.json', 'netlify.toml', '.env', '.env.local'];
+if (target === 'cpanel') {
+  fs.cpSync(path.join(rootDir, 'apache', 'data.htaccess'), path.join(outputDir, 'data', '.htaccess'));
+  fs.cpSync(path.join(rootDir, 'apache', 'docs.htaccess'), path.join(outputDir, 'docs', '.htaccess'));
+}
+
+const forbiddenEntries = ['admin', 'supabase', 'scripts', 'tests', 'package.json', 'netlify.toml', '.env', '.env.local', 'js/supabase-api.js', 'js/supabase-config.js'];
 for (const entry of forbiddenEntries) {
   if (fs.existsSync(path.join(outputDir, entry))) {
     throw new Error(`Arquivo interno incluído no artefato público: ${entry}`);
@@ -50,4 +60,4 @@ if (pdfCount !== 31) {
   throw new Error(`Artefato público deveria conter 31 PDFs, mas contém ${pdfCount}.`);
 }
 
-console.log(`Artefato do Netlify preparado em .netlify-dist (${pdfCount} PDFs).`);
+console.log(`Artefato do ${target === 'cpanel' ? 'cPanel' : 'Netlify'} preparado em ${path.basename(outputDir)} (${pdfCount} PDFs).`);

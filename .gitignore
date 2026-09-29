@@ -7,4 +7,5 @@ npm-debug.log*
 !.env.example
 .netlify/
 .netlify-dist/
+.cpanel-dist/
 coverage/

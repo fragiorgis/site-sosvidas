@@ -11,7 +11,7 @@ function walk(directory, extension) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
     const absolute = path.join(directory, entry.name);
     if (entry.isDirectory()) {
-      if (['.git', '.netlify', '.netlify-dist', 'node_modules'].includes(entry.name)) return [];
+      if (['.git', '.netlify', '.netlify-dist', '.cpanel-dist', 'node_modules'].includes(entry.name)) return [];
       return walk(absolute, extension);
     }
     return entry.isFile() && absolute.endsWith(extension) ? [absolute] : [];
@@ -95,7 +95,6 @@ const secretPatterns = [
 ];
 const securityFiles = [
   ...walk(path.join(rootDir, 'pages'), '.html'),
-  ...walk(path.join(rootDir, 'admin'), '.html'),
   ...walk(path.join(rootDir, 'js'), '.js'),
   path.join(rootDir, 'index.html'),
   path.join(rootDir, 'data', 'transparencia.json'),
@@ -115,16 +114,13 @@ for (const required of [
   '_headers',
   'netlify.toml',
   'package.json',
-  'admin/index.html',
-  'css/admin.css',
   'data/transparencia.json',
-  'js/admin.js',
-  'js/supabase-api.js',
-  'js/supabase-config.js',
   'js/transparencia.js',
   'scripts/validate-transparencia.mjs',
   'scripts/prepare-dist.mjs',
-  'supabase/migrations/202608090001_transparencia.sql'
+  'apache/.htaccess',
+  'apache/data.htaccess',
+  'apache/docs.htaccess'
 ]) {
   if (!fs.existsSync(path.join(rootDir, required))) errors.push(`Arquivo obrigatório ausente: ${required}`);
 }
@@ -142,15 +138,8 @@ for (const header of [
 if (!fs.existsSync(path.join(rootDir, 'robots.txt'))) warnings.push('robots.txt não encontrado.');
 if (!fs.existsSync(path.join(rootDir, 'sitemap.xml'))) warnings.push('sitemap.xml não encontrado.');
 
-const adminScript = fs.readFileSync(path.join(rootDir, 'js', 'admin.js'), 'utf8');
-if (/\.innerHTML\s*=/.test(adminScript)) errors.push('admin.js não pode inserir conteúdo editorial com innerHTML.');
-
-const supabaseConfig = fs.readFileSync(path.join(rootDir, 'js', 'supabase-config.js'), 'utf8');
-if (!supabaseConfig.includes('https://csgvhdjypxufcsjvmubd.supabase.co')) {
-  errors.push('Configuração pública do Supabase aponta para projeto inesperado.');
-}
-if (!headers.includes('https://csgvhdjypxufcsjvmubd.supabase.co')) {
-  errors.push('CSP não permite conexão com o projeto Supabase configurado.');
+if (headers.includes('supabase.co') || transparencyScript.includes('supabase.co')) {
+  errors.push('O site público ainda depende do Supabase.');
 }
 
 warnings.forEach(warning => console.warn(`AVISO: ${warning}`));

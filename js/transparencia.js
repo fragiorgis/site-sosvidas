@@ -1,12 +1,4 @@
-import {
-  SUPABASE_PUBLISHABLE_KEY,
-  SUPABASE_STORAGE_BUCKET,
-  SUPABASE_URL
-} from './supabase-config.js';
-import { getPublicPdfUrl } from './supabase-api.js';
-
-const FALLBACK_DATA_URL = new URL('../data/transparencia.json', import.meta.url);
-const SUPABASE_ORIGIN = new URL(SUPABASE_URL).origin;
+const DATA_URL = new URL('../data/transparencia.json', import.meta.url);
 
 const compareByOrderAndTitle = (a, b) => {
   const orderDifference = Number(a.ordem) - Number(b.ordem);
@@ -22,10 +14,7 @@ export function isSafePdfPath(value) {
     const decoded = decodeURIComponent(value);
     if (decoded.includes('..') || decoded.includes('\\')) return false;
 
-    if (value.startsWith('/docs/')) return true;
-    const url = new URL(value);
-    const prefix = `/storage/v1/object/public/${SUPABASE_STORAGE_BUCKET}/`;
-    return url.origin === SUPABASE_ORIGIN && url.pathname.startsWith(prefix);
+    return value.startsWith('/docs/') && decoded.startsWith('/docs/');
   } catch {
     return false;
   }
@@ -49,74 +38,14 @@ export function getVisibleSections(data) {
     .sort(compareByOrderAndTitle);
 }
 
-export function mapSupabaseRows(sections, documents) {
-  if (!Array.isArray(sections) || !Array.isArray(documents)) {
-    throw new TypeError('Resposta inválida do serviço de transparência.');
-  }
-
-  return {
-    secoes: sections.map(section => ({
-      id: section.id,
-      titulo: section.title,
-      destaque: section.highlight || '',
-      descricao: section.description || '',
-      ordem: section.position,
-      publicada: section.published === true,
-      documentos: documents
-        .filter(documentData => documentData.section_id === section.id && !documentData.archived_at)
-        .map(documentData => ({
-          id: documentData.id,
-          titulo: documentData.title,
-          descricao: documentData.description,
-          selo: documentData.badge || '',
-          arquivo: getPublicPdfUrl(documentData.storage_path),
-          ordem: documentData.position,
-          publicado: documentData.published === true
-        }))
-    }))
-  };
-}
-
-async function fetchJson(url, headers = {}) {
-  const response = await fetch(url, { headers, cache: 'no-cache' });
+async function fetchJson(url) {
+  const response = await fetch(url, { headers: { Accept: 'application/json' }, cache: 'no-cache' });
   if (!response.ok) throw new Error(`Resposta HTTP ${response.status}`);
   return response.json();
 }
 
-export async function fetchSupabaseTransparency() {
-  const headers = {
-    apikey: SUPABASE_PUBLISHABLE_KEY,
-    Accept: 'application/json'
-  };
-  const sectionQuery = new URLSearchParams({
-    select: 'id,title,highlight,description,position,published',
-    published: 'eq.true',
-    order: 'position.asc,title.asc'
-  });
-  const documentQuery = new URLSearchParams({
-    select: 'id,section_id,title,description,badge,storage_path,position,published,archived_at',
-    published: 'eq.true',
-    archived_at: 'is.null',
-    order: 'position.asc,title.asc'
-  });
-
-  const [sections, documents] = await Promise.all([
-    fetchJson(`${SUPABASE_URL}/rest/v1/transparency_sections?${sectionQuery}`, headers),
-    fetchJson(`${SUPABASE_URL}/rest/v1/transparency_documents?${documentQuery}`, headers)
-  ]);
-  return mapSupabaseRows(sections, documents);
-}
-
 export async function loadTransparencyData() {
-  try {
-    return { data: await fetchSupabaseTransparency(), source: 'supabase' };
-  } catch (error) {
-    console.warn('Supabase indisponível; usando a cópia local de segurança.', error);
-    return {
-      data: await fetchJson(FALLBACK_DATA_URL, { Accept: 'application/json' }),
-      source: 'fallback'
-    };
-  }
+  return fetchJson(DATA_URL);
 }
 
 function appendHighlightedText(element, title, highlight) {
@@ -244,8 +173,7 @@ export async function initTransparency() {
     status.textContent = 'Carregando documentos para consulta pública.';
 
     try {
-      const result = await loadTransparencyData();
-      const sections = getVisibleSections(result.data);
+      const sections = getVisibleSections(await loadTransparencyData());
       container.replaceChildren();
 
       if (sections.length === 0) {
@@ -257,8 +185,7 @@ export async function initTransparency() {
       } else {
         sections.forEach(sectionData => container.append(createSection(sectionData)));
         const total = sections.reduce((sum, sectionData) => sum + sectionData.documentos.length, 0);
-        const fallbackMessage = result.source === 'fallback' ? ' Cópia local de segurança em uso.' : '';
-        status.textContent = `${total} documentos carregados em ${sections.length} seções.${fallbackMessage}`;
+        status.textContent = `${total} documentos carregados em ${sections.length} seções.`;
       }
 
       container.setAttribute('aria-busy', 'false');

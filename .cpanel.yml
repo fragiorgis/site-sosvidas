@@ -1,0 +1,13 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/sosvidasrporg/site-new-2026-09-29
+    - /bin/mkdir -p "$DEPLOYPATH" "$DEPLOYPATH/js" "$DEPLOYPATH/data" "$DEPLOYPATH/docs"
+    - /bin/cp index.html robots.txt sitemap.xml "$DEPLOYPATH/"
+    - /bin/cp -R pages css img "$DEPLOYPATH/"
+    - /bin/cp -R docs/. "$DEPLOYPATH/docs/"
+    - /bin/cp -R data/. "$DEPLOYPATH/data/"
+    - /bin/cp js/main.js js/transparencia.js "$DEPLOYPATH/js/"
+    - /bin/cp apache/.htaccess "$DEPLOYPATH/.htaccess"
+    - /bin/cp apache/data.htaccess "$DEPLOYPATH/data/.htaccess"
+    - /bin/cp apache/docs.htaccess "$DEPLOYPATH/docs/.htaccess"
