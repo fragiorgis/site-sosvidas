@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/sosvidasrporg/site-new-2026-09-29
+    - export DEPLOYPATH=/home/sosvidasrporg/public_html
     - /bin/mkdir -p "$DEPLOYPATH" "$DEPLOYPATH/js" "$DEPLOYPATH/data" "$DEPLOYPATH/docs"
     - /bin/cp index.html robots.txt sitemap.xml "$DEPLOYPATH/"
     - /bin/cp -R pages css img "$DEPLOYPATH/"

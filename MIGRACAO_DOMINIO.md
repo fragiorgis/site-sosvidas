@@ -19,10 +19,10 @@ Sete páginas HTML (`index.html` e seis páginas em `pages/`), estilos, scripts 
 
 1. Executar `npm run build:cpanel` e revisar `.cpanel-dist/`.
 2. Enviar as alterações para o repositório público `fragiorgis/site-sosvidas`.
-3. Em **Git Version Control** do cPanel, clonar `https://github.com/fragiorgis/site-sosvidas.git` fora de `public_html`, por exemplo em `/home/sosvidasrporg/git-site-sosvidas`. Em **Pull or Deploy**, atualizar a branch e implantar o commit. A `.cpanel.yml` copia apenas os arquivos públicos para `/home/sosvidasrporg/site-new-2026-09-29`.
+3. Em **Git Version Control** do cPanel, clonar `https://github.com/fragiorgis/site-sosvidas.git` fora de `public_html`, por exemplo em `/home/sosvidasrporg/git-site-sosvidas`. A primeira implantação foi validada em `/home/sosvidasrporg/site-new-2026-09-29`; a `.cpanel.yml` agora publica os arquivos públicos em `/home/sosvidasrporg/public_html`.
 4. Conferir nessa pasta o `index.html`, seis arquivos em `pages/`, o JSON, 31 PDFs e os três `.htaccess`. Se possível, criar um subdomínio temporário com raiz nessa pasta para testar no navegador, inclusive HTTPS e os links dos PDFs.
-5. Confirmar que a cópia do WordPress está íntegra. Mover o conteúdo antigo de `public_html` para fora da área pública, preservando arquivos que o cPanel use para validação do certificado. O banco MySQL e o e-mail não são tocados.
-6. Trocar o destino `DEPLOYPATH` da `.cpanel.yml` para `/home/sosvidasrporg/public_html`, atualizar o Git no cPanel e implantar novamente. Confirmar `https://sosvidasrp.org.br/`, as seis páginas, 31 PDFs, `robots.txt`, sitemap e o redirecionamento de `www` para o domínio principal.
+5. O conteúdo antigo de `public_html` foi movido para `/home/sosvidasrporg/old-public-html-2026-09-29`, fora da área pública. Há também a cópia independente em `backup-site-2026-09-29`. O banco MySQL e o e-mail não foram tocados.
+6. Atualizar o Git no cPanel e implantar novamente. Confirmar `https://sosvidasrp.org.br/`, as seis páginas, 31 PDFs, `robots.txt`, sitemap e o redirecionamento de `www` para o domínio principal. Recolocar `.well-known` e `cgi-bin` se necessários para o serviço.
 7. Depois da validação, remover os domínios personalizados da Netlify e desconectar a publicação automática. Manter um rollback até o novo site ficar estável. Não apagar o projeto antigo do Supabase antes de conferir que não há dados exclusivos nele.
 
 ## CMS no cPanel — etapa posterior
