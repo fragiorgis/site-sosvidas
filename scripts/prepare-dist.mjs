@@ -4,8 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const rootDir = path.resolve(path.dirname(scriptPath), '..');
-const target = process.argv[2] === '--cpanel' ? 'cpanel' : 'netlify';
-const outputDir = path.join(rootDir, target === 'cpanel' ? '.cpanel-dist' : '.netlify-dist');
+const outputDir = path.join(rootDir, '.cpanel-dist');
 
 const publicEntries = [
   'index.html',
@@ -20,7 +19,7 @@ const publicEntries = [
   'data',
   'robots.txt',
   'sitemap.xml',
-  target === 'cpanel' ? 'apache/.htaccess' : '_headers'
+  'apache/.htaccess'
 ];
 
 for (const entry of publicEntries) {
@@ -41,10 +40,8 @@ for (const entry of publicEntries) {
   });
 }
 
-if (target === 'cpanel') {
-  fs.cpSync(path.join(rootDir, 'apache', 'data.htaccess'), path.join(outputDir, 'data', '.htaccess'));
-  fs.cpSync(path.join(rootDir, 'apache', 'docs.htaccess'), path.join(outputDir, 'docs', '.htaccess'));
-}
+fs.cpSync(path.join(rootDir, 'apache', 'data.htaccess'), path.join(outputDir, 'data', '.htaccess'));
+fs.cpSync(path.join(rootDir, 'apache', 'docs.htaccess'), path.join(outputDir, 'docs', '.htaccess'));
 
 const forbiddenEntries = ['admin', 'supabase', 'scripts', 'tests', 'package.json', 'netlify.toml', '.env', '.env.local', 'js/supabase-api.js', 'js/supabase-config.js'];
 for (const entry of forbiddenEntries) {
@@ -60,4 +57,4 @@ if (pdfCount !== 31) {
   throw new Error(`Artefato público deveria conter 31 PDFs, mas contém ${pdfCount}.`);
 }
 
-console.log(`Artefato do ${target === 'cpanel' ? 'cPanel' : 'Netlify'} preparado em ${path.basename(outputDir)} (${pdfCount} PDFs).`);
+console.log(`Artefato do cPanel preparado em ${path.basename(outputDir)} (${pdfCount} PDFs).`);

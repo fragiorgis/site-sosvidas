@@ -11,7 +11,7 @@ function walk(directory, extension) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
     const absolute = path.join(directory, entry.name);
     if (entry.isDirectory()) {
-      if (['.git', '.netlify', '.netlify-dist', '.cpanel-dist', 'node_modules'].includes(entry.name)) return [];
+      if (['.git', '.cpanel-dist', 'node_modules'].includes(entry.name)) return [];
       return walk(absolute, extension);
     }
     return entry.isFile() && absolute.endsWith(extension) ? [absolute] : [];
@@ -98,7 +98,7 @@ const securityFiles = [
   ...walk(path.join(rootDir, 'js'), '.js'),
   path.join(rootDir, 'index.html'),
   path.join(rootDir, 'data', 'transparencia.json'),
-  path.join(rootDir, 'netlify.toml')
+  path.join(rootDir, 'apache', '.htaccess')
 ];
 
 for (const securityFile of securityFiles) {
@@ -111,8 +111,6 @@ for (const securityFile of securityFiles) {
 }
 
 for (const required of [
-  '_headers',
-  'netlify.toml',
   'package.json',
   'data/transparencia.json',
   'js/transparencia.js',
@@ -125,12 +123,12 @@ for (const required of [
   if (!fs.existsSync(path.join(rootDir, required))) errors.push(`Arquivo obrigatório ausente: ${required}`);
 }
 
-const headers = fs.readFileSync(path.join(rootDir, '_headers'), 'utf8');
+const headers = fs.readFileSync(path.join(rootDir, 'apache', '.htaccess'), 'utf8');
 for (const header of [
-  'Content-Security-Policy:',
-  'Referrer-Policy:',
-  'Permissions-Policy:',
-  'X-Content-Type-Options:'
+  'Content-Security-Policy',
+  'Referrer-Policy',
+  'Permissions-Policy',
+  'X-Content-Type-Options'
 ]) {
   if (!headers.includes(header)) errors.push(`Cabeçalho de segurança ausente: ${header}`);
 }

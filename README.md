@@ -1,6 +1,6 @@
 # SOS Vidas — site institucional
 
-Site público estático da Associação SOS Vidas. O destino de produção é o cPanel de `sosvidasrp.org.br`. A versão pública contém sete páginas HTML, estilos, imagens, 31 PDFs e `data/transparencia.json`. A página de transparência lê esse arquivo local; não há login ou dependência do Supabase no site publicado.
+Site público estático da Associação SOS Vidas, publicado no cPanel de `sosvidasrp.org.br`. A versão pública contém sete páginas HTML, estilos, imagens, 31 PDFs e `data/transparencia.json`. A página de transparência lê esse arquivo local; não há login ou dependência do Supabase no site publicado.
 
 ## Estrutura
 
@@ -26,4 +26,4 @@ python3 -m http.server 8765
 
 Abra `http://localhost:8765/` e `http://localhost:8765/pages/transparencia.html`.
 
-`npm run build:cpanel` gera `.cpanel-dist/`, sem arquivos internos. A publicação do cPanel usa os mesmos arquivos públicos por meio de `.cpanel.yml`. O comando `npm run build` mantém o artefato da Netlify apenas durante a transição.
+`npm run build:cpanel` gera `.cpanel-dist/`, sem arquivos internos. A publicação do cPanel usa os mesmos arquivos públicos por meio de `.cpanel.yml`.

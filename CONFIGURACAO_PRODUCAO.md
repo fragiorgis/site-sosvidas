@@ -6,4 +6,4 @@ O repositório Git é a origem das versões. Antes de implantar, execute `npm ru
 
 No cPanel, **Git Version Control → Update from Remote → Deploy HEAD Commit** implanta o commit selecionado. A primeira implantação foi validada em `/home/sosvidasrporg/site-new-2026-09-29`; agora o destino é `/home/sosvidasrporg/public_html`. O conteúdo anterior foi preservado em duas pastas fora da área pública. Não edite diretamente o clone gerenciado pelo cPanel: alterações devem ser feitas no repositório de origem.
 
-Após a troca, confira a página inicial, as seis páginas internas, os 31 PDFs, a ausência de `/admin`, o redirecionamento de `www`, HTTPS e cabeçalhos de segurança. O certificado é gerenciado em **SSL/TLS Status**. Consulte [MIGRACAO_DOMINIO.md](MIGRACAO_DOMINIO.md) para a sequência e o retorno.
+Na implantação de 29/09/2026 foram conferidos a página inicial, as seis páginas internas, os 31 PDFs, a ausência de `/admin`, o redirecionamento de `www`, HTTPS e cabeçalhos de segurança. O certificado é gerenciado em **SSL/TLS Status**. Repita essas verificações após cada alteração relevante. Consulte [MIGRACAO_DOMINIO.md](MIGRACAO_DOMINIO.md) para o histórico e o retorno.

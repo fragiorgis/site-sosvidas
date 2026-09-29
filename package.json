@@ -12,6 +12,6 @@
     "test": "node --test tests/transparencia-ui.test.mjs tests/validate-transparencia.test.mjs",
     "check": "npm run validate:content && npm run validate:site && npm test",
     "build": "npm run check && node scripts/prepare-dist.mjs",
-    "build:cpanel": "npm run check && node scripts/prepare-dist.mjs --cpanel"
+    "build:cpanel": "npm run build"
   }
 }
