@@ -27,3 +27,7 @@ python3 -m http.server 8765
 Abra `http://localhost:8765/` e `http://localhost:8765/pages/transparencia.html`.
 
 `npm run build:cpanel` gera `.cpanel-dist/`, sem arquivos internos. A publicação do cPanel usa os mesmos arquivos públicos por meio de `.cpanel.yml`.
+
+## Fotos e novidades
+
+A seleção manual do Instagram está em `data/atualizacoes.json`. A página inicial mostra três destaques e Eventos reúne todas as publicações selecionadas. Veja [OPERACAO_ATUALIZACOES.md](OPERACAO_ATUALIZACOES.md) para incluir fotos e atualizar os posts no cPanel.

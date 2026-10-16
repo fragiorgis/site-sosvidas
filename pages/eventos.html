@@ -254,61 +254,37 @@
       <div class="container">
         <span class="badge badge--yellow" style="margin-bottom:1rem;">Agenda</span>
         <h1 id="eventos-titulo">Encontros que <em>aproximam</em> a comunidade</h1>
-        <p>Acompanhe nossas celebrações, eventos mensais e campanhas sazonais. Toda a comunidade é bem-vinda.</p>
+        <p>Fotos, encontros e novidades da nossa comunidade. Acompanhe o que acontece na SOS Vidas.</p>
       </div>
     </section>
 
-    <!-- PRÓXIMOS EVENTOS -->
-    <section class="section" aria-labelledby="proximos-titulo">
+    <section class="section updates-section" id="atualizacoes" aria-labelledby="atualizacoes-titulo">
       <div class="container">
-        <h2 class="section-title" id="proximos-titulo">Próximos eventos</h2>
-        <p class="section-subtitle">Marque na agenda e participe das nossas atividades.</p>
-        <div class="grid-3" style="margin-top:2rem;">
-
-          <!-- Card 1 -->
-          <article class="event-card">
-            <div class="event-card-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <span class="badge badge--blue">Evento Mensal</span>
-            <p class="event-date">Julho 2026</p>
-            <h3>Celebração de Aniversariantes</h3>
-            <p>Festa mensal em homenagem aos aniversariantes do mês, com bolo, músicas e muita alegria.</p>
-            <a href="contato.html" class="btn btn-secondary">Saber mais</a>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="event-card">
-            <div class="event-card-icon" style="background:#FFF9C4;color:var(--yellow-dark);" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <span class="badge badge--yellow">Sazonal</span>
-            <p class="event-date">Agosto 2026</p>
-            <h3>Dia dos Pais</h3>
-            <p>Evento especial de homenagem aos pais atendidos pelo projeto, com café da manhã e atividades.</p>
-            <a href="contato.html" class="btn btn-secondary">Saber mais</a>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="event-card">
-            <div class="event-card-icon" style="background:var(--pink-light);color:var(--pink);" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <span class="badge badge--pink">Campanha</span>
-            <p class="event-date">Outubro 2026</p>
-            <h3>Dia das Crianças</h3>
-            <p>Distribuição de brinquedos e realização de festa para as crianças das famílias atendidas.</p>
-            <a href="contato.html" class="btn btn-secondary">Saber mais</a>
-          </article>
-
+        <div class="updates-heading">
+          <div>
+            <h2 class="section-title" id="atualizacoes-titulo">Momentos que queremos compartilhar</h2>
+            <p class="section-subtitle">Uma seleção das publicações do nosso Instagram. Abra cada post para ver mais fotos ou assistir ao vídeo.</p>
+          </div>
+          <a class="updates-profile" href="https://www.instagram.com/sos_vidass/" target="_blank" rel="noopener noreferrer">@sos_vidass <span class="visually-hidden">no Instagram (nova aba)</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
         </div>
+        <div class="updates-grid" data-updates="todos" aria-busy="true"></div>
+        <p class="updates-status" role="status">Carregando os registros selecionados…</p>
+        <noscript><p>Veja os registros de nossas atividades no <a href="https://www.instagram.com/sos_vidass/">Instagram da SOS Vidas</a>.</p></noscript>
+        <p class="updates-note">As datas indicam quando cada registro foi publicado no Instagram.</p>
+      </div>
+    </section>
+    <section class="section section--gray" aria-labelledby="agenda-titulo">
+      <div class="container updates-agenda">
+        <div><h2 class="section-title" id="agenda-titulo">Participe dos próximos encontros</h2>
+        <p>Consulte a programação com nossa equipe e acompanhe os convites no Instagram.</p></div>
+        <a class="btn btn-secondary" href="contato.html">Consultar programação</a>
       </div>
     </section>
 
     <!-- EVENTOS REALIZADOS -->
     <section class="section section--gray" aria-labelledby="realizados-titulo">
       <div class="container">
-        <h2 class="section-title" id="realizados-titulo">Eventos realizados em 2026</h2>
+        <h2 class="section-title" id="realizados-titulo">Outros momentos da nossa história</h2>
         <p class="section-subtitle">Um histórico de ações que transformaram vidas na nossa comunidade.</p>
         <div class="past-events-list" role="list">
 
@@ -431,5 +407,6 @@
   </footer>
 
   <script src="../js/main.js"></script>
+  <script type="module" src="../js/atualizacoes.js"></script>
 </body>
 </html>

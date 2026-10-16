@@ -7,3 +7,5 @@ npm-debug.log*
 !.env.example
 .cpanel-dist/
 coverage/
+
+.impeccable/review/

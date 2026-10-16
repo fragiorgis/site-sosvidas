@@ -9,7 +9,7 @@
   "scripts": {
     "validate:content": "node scripts/validate-transparencia.mjs",
     "validate:site": "node scripts/validate-site.mjs",
-    "test": "node --test tests/transparencia-ui.test.mjs tests/validate-transparencia.test.mjs",
+    "test": "node --test tests/transparencia-ui.test.mjs tests/validate-transparencia.test.mjs tests/atualizacoes.test.mjs",
     "check": "npm run validate:content && npm run validate:site && npm test",
     "build": "npm run check && node scripts/prepare-dist.mjs",
     "build:cpanel": "npm run build"

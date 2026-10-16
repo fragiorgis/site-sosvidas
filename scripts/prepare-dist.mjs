@@ -14,6 +14,7 @@ const publicEntries = [
   'css/variables.css',
   'js/main.js',
   'js/transparencia.js',
+  'js/atualizacoes.js',
   'img',
   'docs',
   'data',

@@ -632,3 +632,37 @@ h1 em, h2 em, h3 em {
 .mt-2 { margin-top: 2rem; }
 .mb-1 { margin-bottom: 1rem; }
 .mb-2 { margin-bottom: 2rem; }
+
+/* Seleção editorial de publicações: fotografias locais e fonte no Instagram. */
+.updates-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; margin-bottom: 2.5rem; }
+.updates-heading .section-title { text-align: left; margin-bottom: .75rem; }
+.updates-heading .section-subtitle { text-align: left; margin: 0; max-width: 62ch; }
+.updates-profile { display: inline-flex; align-items: center; gap: .4rem; color: var(--blue-dark); font-weight: 600; white-space: nowrap; padding-block: .6rem; }
+.updates-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem 1.75rem; }
+.update-post { min-width: 0; }
+.update-link { display: block; height: 100%; color: var(--text); border-radius: 12px; }
+.update-link img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; object-position: center; border-radius: 12px; margin-bottom: 1.25rem; background: #faf7f2; }
+.update-link img[hidden] { display: none; }
+.update-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .4rem .75rem; font-size: .8rem; line-height: 1.5; margin-bottom: .65rem; color: #525b67; }
+.update-meta span { color: var(--blue-dark); font-weight: 600; }
+.update-link h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); line-height: 1.25; margin-bottom: .75rem; text-wrap: balance; }
+.update-description { color: #525b67; font-size: .95rem; line-height: 1.7; margin-bottom: 1rem; }
+.update-cta { color: var(--blue-dark); font-size: .9rem; font-weight: 600; text-decoration: underline; text-underline-offset: .25em; }
+.update-link:hover h3, .updates-profile:hover { color: var(--blue-dark); text-decoration: underline; text-underline-offset: .2em; }
+.update-link:focus-visible, .updates-profile:focus-visible { outline: 3px solid var(--blue); outline-offset: 6px; }
+.updates-more { margin-top: 2.5rem; }
+.updates-note, .updates-status { color: #525b67; font-size: .9rem; margin-top: 1.5rem; line-height: 1.6; }
+.updates-agenda { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+.updates-agenda .section-title { text-align: left; margin-bottom: .75rem; }
+.updates-agenda p { max-width: 65ch; line-height: 1.7; }
+.updates-agenda .btn { flex-shrink: 0; }
+@media (max-width: 900px) {
+  .updates-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .updates-heading, .updates-agenda { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
+@media (max-width: 560px) {
+  .updates-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .updates-heading { margin-bottom: 1.75rem; }
+}
+.updates-section { scroll-margin-top: calc(var(--header-h) + 1rem); }
+.update-link img { object-fit: contain; }

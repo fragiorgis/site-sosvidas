@@ -7,7 +7,7 @@ deployment:
     - /bin/cp -R pages css img "$DEPLOYPATH/"
     - /bin/cp -R docs/. "$DEPLOYPATH/docs/"
     - /bin/cp -R data/. "$DEPLOYPATH/data/"
-    - /bin/cp js/main.js js/transparencia.js "$DEPLOYPATH/js/"
+    - /bin/cp js/main.js js/transparencia.js js/atualizacoes.js "$DEPLOYPATH/js/"
     - /bin/cp apache/.htaccess "$DEPLOYPATH/.htaccess"
     - /bin/cp apache/data.htaccess "$DEPLOYPATH/data/.htaccess"
     - /bin/cp apache/docs.htaccess "$DEPLOYPATH/docs/.htaccess"

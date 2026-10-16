@@ -1,0 +1,65 @@
+{
+  "atualizadoEm": "2026-10-15",
+  "posts": [
+    {
+      "id": "criancas-2026",
+      "titulo": "Uma festa feita por muitas mãos",
+      "resumo": "Presentes, carinho e a participação de parceiros marcaram o Dia das Crianças da SOS Vidas.",
+      "data": "2026-10-14",
+      "categoria": "Comunidade",
+      "imagem": "/img/instagram/dia-das-criancas.webp",
+      "alt": "Integrante da SOS Vidas com presentes na comemoração do Dia das Crianças",
+      "url": "https://www.instagram.com/sos_vidass/p/DefK_5Cj77k/",
+      "destaque": true,
+      "publicado": true
+    },
+    {
+      "id": "idosos-2026",
+      "titulo": "Histórias e afeto no Dia do Idoso",
+      "resumo": "Um encontro com almoço, música, brincadeiras e presentes para celebrar a convivência.",
+      "data": "2026-10-07",
+      "categoria": "Convivência",
+      "imagem": "/img/instagram/dia-do-idoso.webp",
+      "alt": "Participante recebendo um presente na comemoração do Dia do Idoso",
+      "url": "https://www.instagram.com/sos_vidass/p/DeNFyM1j0nu/",
+      "destaque": false,
+      "publicado": true
+    },
+    {
+      "id": "acacias-2026",
+      "titulo": "Solidariedade que vira presente",
+      "resumo": "O grupo Acácias Antônio Duarte Nogueira contribuiu com presentes para as crianças atendidas.",
+      "data": "2026-10-06",
+      "categoria": "Doações",
+      "imagem": "/img/instagram/doacoes-acacias.webp",
+      "alt": "Grupo de apoiadoras junto às doações na sede da SOS Vidas",
+      "url": "https://www.instagram.com/sos_vidass/p/DeKnLzUvll6/",
+      "destaque": true,
+      "publicado": true
+    },
+    {
+      "id": "cursos-2026",
+      "titulo": "Aprendizado que abre caminhos",
+      "resumo": "A entrega de certificados celebrou as conquistas dos alunos dos cursos profissionalizantes.",
+      "data": "2026-09-16",
+      "categoria": "Formação",
+      "imagem": "/img/instagram/certificados-cursos.jpg",
+      "alt": "Participantes preparando alimentos durante um curso profissionalizante",
+      "url": "https://www.instagram.com/sos_vidass/reel/DdWfiRkueLG/",
+      "destaque": true,
+      "publicado": true
+    },
+    {
+      "id": "artesanato-2026",
+      "titulo": "Criar, aprender e estar junto",
+      "resumo": "Uma oficina de artesanato reuniu participantes para criar lembranças e compartilhar um café da manhã.",
+      "data": "2026-08-10",
+      "categoria": "Oficinas",
+      "imagem": "/img/instagram/oficina-artesanato.jpg",
+      "alt": "Participantes em volta da mesa durante oficina de artesanato",
+      "url": "https://www.instagram.com/sos_vidass/reel/Db4GKvJvrXI/",
+      "destaque": false,
+      "publicado": true
+    }
+  ]
+}
