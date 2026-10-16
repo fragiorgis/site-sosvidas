@@ -7,116 +7,37 @@
   <title>Doar para SOS Vidas — PIX, Alimentos e Roupas em RP</title>
   <link rel="stylesheet" href="../css/style.css">
   <style>
-    /* ── Page hero (editorial) ── */
-    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&display=swap');
-
-    .page-hero {
-      background: #FAF7F2;
-      position: relative;
-      overflow: hidden;
-      padding-block: 4rem 4.5rem;
-      color: var(--text);
-    }
-    .page-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(90deg, rgba(21,101,192,.04) 1px, transparent 1px);
-      background-size: 80px 100%;
-      pointer-events: none;
-    }
-    .page-hero .container { position: relative; }
-    .page-hero .badge {
-      background: rgba(21, 101, 192, .08);
-      color: var(--blue);
-      border: 1px solid rgba(21, 101, 192, .18);
-    }
-    .page-hero h1 {
-      font-family: 'Fraunces', 'Outfit', serif;
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      font-weight: 500;
-      line-height: 1.05;
-      letter-spacing: -.02em;
-      color: #0F1E33;
-      margin-bottom: 1rem;
-      max-width: 18ch;
-    }
-    .page-hero h1 em {
-      font-style: italic;
-      font-weight: 700;
-      color: var(--blue);
-      position: relative;
-      display: inline-block;
-      white-space: nowrap;
-    }
-    .page-hero h1 em {
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 24' preserveAspectRatio='none'><path d='M3 16 C 80 4, 160 22, 297 9' stroke='%23FDD835' stroke-width='10' stroke-linecap='round' fill='none'/></svg>");
-      background-repeat: no-repeat;
-      background-position: 0 88%;
-      background-size: 100% 22%;
-    }
-    .page-hero h1 em::after {
-      content: '';
-    }
-    .page-hero p {
-      color: #4A5468;
-      font-size: clamp(1rem, 1.5vw, 1.1rem);
-      line-height: 1.7;
-      max-width: 580px;
-    }
-
-    /* PIX card */
-    .pix-card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      padding: 2rem;
-      border-top: 4px solid var(--yellow);
-      text-align: center;
-    }
-    .pix-icon {
-      width: 64px; height: 64px;
-      background: linear-gradient(135deg, #32BCAD, #1B8B80);
-      border-radius: var(--radius-lg);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.25rem;
-    }
-    .pix-card h2 { font-size: 1.5rem; color: var(--text); margin-bottom: .5rem; }
-    .pix-card .pix-sub { color: var(--text-light); margin-bottom: 1.5rem; }
-
-    .pix-chave-box {
-      background: var(--gray);
-      border: 2px dashed var(--gray-dark);
-      border-radius: var(--radius);
-      padding: 1rem 1.5rem;
-      margin-bottom: 1.25rem;
-    }
-    .pix-chave-label { font-size: .78rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .3rem; }
-    .pix-chave-valor { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--blue); word-break: break-all; }
-
+    /* PIX: acesso direto à doação, inclusive no celular. */
+    .pix-section { padding-block: 2rem 2.5rem; background: #FAF7F2; }
+    .pix-container { max-width: 880px; }
+    .pix-section h1 { font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1.15; margin-bottom: .5rem; }
+    .pix-intro { color: #4A5468; margin-bottom: 1.5rem; }
+    .pix-layout { display: grid; gap: 1.25rem; align-items: center; }
+    .pix-chave-label { display: block; font-weight: 600; margin-bottom: .25rem; }
+    .pix-chave-valor { display: block; font-family: 'Outfit', sans-serif; font-size: clamp(1.25rem, 5.8vw, 1.75rem); font-weight: 700; color: var(--blue); user-select: all; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+    .pix-recipient { font-size: .9rem; color: #4A5468; margin: .35rem 0 1rem; }
     .pix-copy {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .6rem 1.25rem;
-      background: var(--blue-light);
-      color: var(--blue);
-      border-radius: var(--radius);
-      font-weight: 600; font-size: .9rem;
-      cursor: pointer;
-      border: none;
-      transition: background var(--transition);
+      display: flex; align-items: center; justify-content: center; gap: .6rem;
+      width: 100%; min-height: 52px; padding: .75rem 1rem;
+      background: var(--blue); color: white; border: 0;
+      border-radius: var(--radius); font: inherit; font-weight: 700; cursor: pointer;
     }
-    .pix-copy:hover { background: var(--gray-dark); }
-    .pix-copy:focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; }
-
-    .pix-qr {
-      width: 160px; height: 160px;
-      border: 2px solid var(--gray-dark);
-      border-radius: var(--radius);
-      display: flex; align-items: center; justify-content: center;
-      margin: 1rem auto;
-      background: var(--gray);
-      color: var(--text-light); font-size: .85rem; text-align: center;
-      padding: 1rem;
+    .pix-copy[hidden] { display: none; }
+    .pix-copy:hover { background: #0D47A1; }
+    .pix-copy:focus-visible, .pix-chave-valor:focus-visible { outline: 3px solid #0F1E33; outline-offset: 4px; }
+    .pix-copy:disabled { cursor: wait; opacity: .75; }
+    .pix-status { min-height: 3em; font-size: .9rem; line-height: 1.5; color: #4A5468; margin-top: .6rem; }
+    .pix-status[data-state="success"] { color: #17623A; }
+    .pix-status[data-state="error"] { color: #A12622; }
+    .pix-qr { margin: 0; text-align: center; }
+    .pix-qr img { width: 216px; height: 216px; max-width: 100%; object-fit: contain; background: white; margin-inline: auto; }
+    .pix-qr figcaption { font-size: .9rem; color: #4A5468; margin-top: .5rem; }
+    .pix-help { border-top: 1px solid #D8DDE4; padding-top: 1rem; margin-top: 1.5rem; color: #4A5468; font-size: .95rem; }
+    .pix-help a { color: var(--blue); text-decoration: underline; text-underline-offset: .2em; }
+    @media (min-width: 768px) {
+      .pix-section { padding-block: 2.5rem 3rem; }
+      .pix-layout { grid-template-columns: minmax(0, 1fr) 280px; gap: 3rem; }
+      .pix-qr img { width: 240px; height: 240px; }
     }
 
     /* Doação física */
@@ -219,7 +140,6 @@
 
     @media (min-width: 768px) {
       .doe-fisica-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-      .doe-hero-grid  { display: grid; grid-template-columns: 1fr 360px; gap: 2rem; align-items: start; }
       .instr-grid     { grid-template-columns: 1fr 1fr; }
     }
   </style>
@@ -264,69 +184,28 @@
 
   <main>
 
-    <section class="page-hero" aria-labelledby="doe-titulo">
-      <div class="container">
-        <span class="badge badge--yellow" style="margin-bottom:1rem;">Faça a diferença</span>
-        <h1 id="doe-titulo">Sua doação <em>chega</em> a quem mais precisa</h1>
-        <p>Cada contribuição — seja um alimento, uma peça de roupa ou um PIX — é distribuída com responsabilidade e cuidado para as famílias que atendemos.</p>
-      </div>
-    </section>
-
-    <!-- PIX + CTA -->
-    <section class="section" aria-labelledby="pix-titulo">
-      <div class="container">
-        <div class="doe-hero-grid" style="display:grid;gap:2rem;">
+    <section class="pix-section" aria-labelledby="pix-titulo">
+      <div class="container pix-container">
+        <h1 id="pix-titulo">Doe via PIX</h1>
+        <p class="pix-intro">Escolha o valor e contribua com a SOS Vidas.</p>
+        <div class="pix-layout">
           <div>
-            <span class="badge badge--blue">Rápido e seguro</span>
-            <h2 class="section-title mt-1" id="pix-titulo">Doe via PIX</h2>
-            <p style="color:var(--text-light);line-height:1.8;margin-bottom:1.5rem;">
-              O PIX é a forma mais rápida e direta de contribuir com a SOS Vidas. O valor é recebido imediatamente e destinado ao atendimento das famílias cadastradas.
-            </p>
-            <ul style="list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem;">
-              <li style="display:flex;align-items:center;gap:.75rem;font-size:.95rem;">
-                <span style="width:28px;height:28px;background:var(--blue-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:700;flex-shrink:0;">1</span>
-                Abra o app do seu banco e acesse a opção PIX
-              </li>
-              <li style="display:flex;align-items:center;gap:.75rem;font-size:.95rem;">
-                <span style="width:28px;height:28px;background:var(--blue-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:700;flex-shrink:0;">2</span>
-                Copie a chave PIX ao lado ou escaneie o QR Code
-              </li>
-              <li style="display:flex;align-items:center;gap:.75rem;font-size:.95rem;">
-                <span style="width:28px;height:28px;background:var(--blue-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:700;flex-shrink:0;">3</span>
-                Confirme o destinatário: <strong>SOS Vidas Ribeirão Preto</strong>
-              </li>
-              <li style="display:flex;align-items:center;gap:.75rem;font-size:.95rem;">
-                <span style="width:28px;height:28px;background:var(--blue-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:700;flex-shrink:0;">4</span>
-                Digite o valor que deseja doar e confirme
-              </li>
-            </ul>
-            <p style="font-size:.88rem;color:var(--text-light);">Dúvidas? <a href="https://wa.me/551634415578" style="color:var(--blue);font-weight:600;">Fale conosco no WhatsApp</a>.</p>
-          </div>
-
-          <div class="pix-card">
-            <div class="pix-icon" aria-hidden="true">
-              <svg width="36" height="36" viewBox="0 0 512 512" fill="white"><path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.4 369.5C350.7 380.8 366.4 386.9 382.1 386.9H394.2L313.5 467.6C286.4 494.6 242.6 494.6 215.5 467.6L134.7 386.9H146.7C162.4 386.9 178.1 380.8 189.4 369.5L242.4 292.5zM215.5 44.4L296.2 125.1H284.1C268.4 125.1 252.7 131.2 241.4 142.5L164.4 219.5C159 224.9 149.7 224.9 144.3 219.5L67.4 142.5C56.1 131.2 40.4 125.1 24.7 125.1H12.7L93.5 44.4C120.6 17.3 164.4 17.3 191.5 44.4 203 32.9 215.5 44.4 215.5 44.4z"/></svg>
-            </div>
-            <h2>PIX SOS Vidas</h2>
-            <p class="pix-sub">Escaneie o QR Code ou copie a chave abaixo</p>
-
-            <div class="pix-qr" role="img" aria-label="QR Code PIX da SOS Vidas — escaneie pelo app do banco">
-              <img src="../img/pix-qrcode.png" alt="QR Code PIX da Associação SOS Vidas — CNPJ 30.339.161/0001-75" style="width:100%;height:100%;object-fit:contain;padding:.4rem;background:white;border-radius:6px;">
-            </div>
-
-            <div class="pix-chave-box">
-              <div class="pix-chave-label">Chave PIX (CNPJ)</div>
-              <div class="pix-chave-valor" id="pix-chave">30.339.161/0001-75</div>
-              <p style="font-size:.78rem;color:var(--text-light);margin-top:.35rem;">Associação SOS Vidas — Ribeirão Preto/SP</p>
-            </div>
-
-            <button class="pix-copy" id="btn-copiar" aria-label="Copiar chave PIX para a área de transferência">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span class="pix-chave-label" id="pix-chave-label">Chave PIX (CNPJ)</span>
+            <span class="pix-chave-valor" id="pix-chave" tabindex="0">30.339.161/0001-75</span>
+            <p class="pix-recipient">Associação SOS Vidas · Ribeirão Preto/SP</p>
+            <button class="pix-copy" id="btn-copiar" type="button" aria-describedby="pix-status" hidden>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               <span id="btn-copiar-texto">Copiar chave PIX</span>
             </button>
-            <p style="font-size:.78rem;color:var(--text-light);margin-top:.75rem;">Forma mais rápida e segura de doar — 100% direto na conta da instituição.</p>
+            <p class="pix-status" id="pix-status" role="status" aria-live="polite" aria-atomic="true">No app do banco, escolha PIX por chave CNPJ.</p>
+            <noscript><p>Selecione e copie a chave acima para usar no app do banco.</p></noscript>
           </div>
+          <figure class="pix-qr">
+            <img src="../img/pix-qrcode.png" width="240" height="240" alt="QR Code PIX da Associação SOS Vidas, CNPJ 30.339.161/0001-75">
+            <figcaption>Ou escaneie com o app do banco.</figcaption>
+          </figure>
         </div>
+        <p class="pix-help">Confira o nome e o CNPJ da instituição no banco antes de confirmar. Você escolhe quanto doar. <a href="contato.html">Precisa de ajuda?</a></p>
       </div>
     </section>
 
@@ -555,24 +434,33 @@
 
   <script src="../js/main.js"></script>
   <script>
-    // Copiar chave PIX (apenas os dígitos do CNPJ)
-    document.getElementById('btn-copiar')?.addEventListener('click', function() {
-      const chave = '30339161000175';
-      const textoEl = document.getElementById('btn-copiar-texto');
-      const original = textoEl.textContent;
-      navigator.clipboard.writeText(chave).then(() => {
-        textoEl.textContent = '✓ Chave copiada!';
-        this.style.background = 'var(--yellow)';
-        this.style.color = 'var(--text)';
-        setTimeout(() => {
-          textoEl.textContent = original;
-          this.style.background = '';
-          this.style.color = '';
-        }, 2500);
-      }).catch(() => {
-        textoEl.textContent = 'Erro — copie manualmente';
-        setTimeout(() => { textoEl.textContent = original; }, 2500);
-      });
+    const botaoPix = document.getElementById('btn-copiar');
+    const chavePix = document.getElementById('pix-chave');
+    const statusPix = document.getElementById('pix-status');
+    const textoPix = document.getElementById('btn-copiar-texto');
+    botaoPix.hidden = false;
+    botaoPix.addEventListener('click', async () => {
+      const chave = chavePix.textContent.replace(/\D/g, '');
+      botaoPix.disabled = true;
+      try {
+        if (!navigator.clipboard?.writeText) throw new Error('Cópia indisponível');
+        await navigator.clipboard.writeText(chave);
+        textoPix.textContent = 'Chave copiada!';
+        statusPix.dataset.state = 'success';
+        statusPix.textContent = 'Agora cole no app do banco, na opção PIX por chave CNPJ.';
+      } catch {
+        textoPix.textContent = 'Tentar copiar novamente';
+        statusPix.dataset.state = 'error';
+        statusPix.textContent = 'Não foi possível copiar. A chave está selecionada: use Copiar no seu dispositivo.';
+        chavePix.focus();
+        const selecao = window.getSelection();
+        const intervalo = document.createRange();
+        intervalo.selectNodeContents(chavePix);
+        selecao.removeAllRanges();
+        selecao.addRange(intervalo);
+      } finally {
+        botaoPix.disabled = false;
+      }
     });
   </script>
 </body>
