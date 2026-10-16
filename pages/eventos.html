@@ -118,31 +118,27 @@
       padding: .45rem 1.1rem;
     }
 
-    /* ── Eventos realizados ── */
-    .past-events-list {
+    /* ── Calendário sazonal ── */
+    .seasonal-events-list {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
       margin-top: 2rem;
     }
-    .past-event-item {
+    .seasonal-event-item {
       display: grid;
       grid-template-columns: 1fr;
       gap: .5rem;
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
-      box-shadow: var(--shadow);
-      border-left: 4px solid var(--blue);
+      padding: 1.5rem 0;
+      border-top: 1px solid #d3d9df;
     }
     @media (min-width: 640px) {
-      .past-event-item {
-        grid-template-columns: 140px 1fr;
+      .seasonal-event-item {
+        grid-template-columns: 160px 1fr;
         align-items: center;
         gap: 1.5rem;
       }
     }
-    .past-event-date {
+    .seasonal-event-period {
       font-family: 'Outfit', sans-serif;
       font-size: .82rem;
       font-weight: 700;
@@ -150,14 +146,14 @@
       text-transform: uppercase;
       letter-spacing: .05em;
     }
-    .past-event-title {
+    .seasonal-event-title {
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
       font-size: 1rem;
       margin-bottom: .2rem;
       color: var(--text);
     }
-    .past-event-desc {
+    .seasonal-event-desc {
       font-size: .88rem;
       color: var(--text-light);
       line-height: 1.5;
@@ -281,53 +277,47 @@
       </div>
     </section>
 
-    <!-- EVENTOS REALIZADOS -->
-    <section class="section section--gray" aria-labelledby="realizados-titulo">
+    <!-- CAMPANHAS SAZONAIS -->
+    <section class="section section--gray" id="campanhas" aria-labelledby="campanhas-titulo">
       <div class="container">
-        <h2 class="section-title" id="realizados-titulo">Outros momentos da nossa história</h2>
-        <p class="section-subtitle">Um histórico de ações que transformaram vidas na nossa comunidade.</p>
-        <div class="past-events-list" role="list">
-
-          <div class="past-event-item" role="listitem">
-            <div class="past-event-date">Abril 2026</div>
+        <h2 class="section-title" id="campanhas-titulo">Solidariedade ao longo do ano</h2>
+        <p class="section-subtitle">Datas que inspiram encontros e campanhas. Os períodos abaixo são referências do calendário; a programação de cada edição é confirmada pela equipe e divulgada no Instagram.</p>
+        <div class="seasonal-events-list" role="list">
+          <div class="seasonal-event-item" role="listitem">
+            <div class="seasonal-event-period">Março</div>
             <div>
-              <p class="past-event-title">Páscoa Solidária</p>
-              <p class="past-event-desc">Distribuição de ovos para mais de 500 crianças em 3 comunidades da cidade.</p>
+              <h3 class="seasonal-event-title">Mês da Mulher</h3>
+              <p class="seasonal-event-desc">Um período para valorizar as mulheres, fortalecer vínculos e conversar sobre cuidado e direitos.</p>
             </div>
           </div>
-
-          <div class="past-event-item" role="listitem" style="border-color:var(--pink);">
-            <div class="past-event-date" style="color:var(--pink);">Abril 2026</div>
+          <div class="seasonal-event-item" role="listitem">
+            <div class="seasonal-event-period">Março ou abril</div>
             <div>
-              <p class="past-event-title">Festa Comunitária</p>
-              <p class="past-event-desc">Eventos com pula-pula, algodão doce e cortes de cabelo gratuitos para a comunidade.</p>
+              <h3 class="seasonal-event-title">Páscoa Solidária</h3>
+              <p class="seasonal-event-desc">Uma oportunidade de mobilizar doações e compartilhar momentos de convivência com as famílias. O período varia conforme a Páscoa de cada ano.</p>
             </div>
           </div>
-
-          <div class="past-event-item" role="listitem" style="border-color:var(--yellow-dark);">
-            <div class="past-event-date" style="color:var(--yellow-dark);">Março 2026</div>
+          <div class="seasonal-event-item" role="listitem">
+            <div class="seasonal-event-period">Outubro</div>
             <div>
-              <p class="past-event-title">Mês da Mulher</p>
-              <p class="past-event-desc">Manhã especial com dinâmicas, café da manhã e homenagens às mulheres atendidas.</p>
+              <h3 class="seasonal-event-title">Dia da Pessoa Idosa e Dia das Crianças</h3>
+              <p class="seasonal-event-desc">Afeto entre gerações: valorização das pessoas idosas e momentos de brincadeira e convivência para as crianças.</p>
             </div>
           </div>
-
-          <div class="past-event-item" role="listitem">
-            <div class="past-event-date">Fevereiro 2026</div>
+          <div class="seasonal-event-item" role="listitem">
+            <div class="seasonal-event-period">Dezembro</div>
             <div>
-              <p class="past-event-title">Carnaval Solidário</p>
-              <p class="past-event-desc">Distribuição de cestas básicas e kits escolares para as famílias cadastradas no projeto.</p>
+              <h3 class="seasonal-event-title">Natal Solidário</h3>
+              <p class="seasonal-event-desc">Uma época de reunir a comunidade e apoiar as famílias. Consulte a equipe sobre a campanha, os itens necessários e as formas de participar.</p>
             </div>
           </div>
-
-          <div class="past-event-item" role="listitem" style="border-color:var(--pink);">
-            <div class="past-event-date" style="color:var(--pink);">Dezembro 2025</div>
+          <div class="seasonal-event-item" role="listitem">
+            <div class="seasonal-event-period">Ao longo do ano</div>
             <div>
-              <p class="past-event-title">Natal Solidário</p>
-              <p class="past-event-desc">Festa de Natal com distribuição de presentes para mais de 80 crianças das famílias atendidas.</p>
+              <h3 class="seasonal-event-title">Oficinas e encontros comunitários</h3>
+              <p class="seasonal-event-desc">Artesanato, aprendizado e convivência fazem parte dos registros da SOS Vidas. Consulte as turmas e atividades disponíveis.</p>
             </div>
           </div>
-
         </div>
       </div>
     </section>
