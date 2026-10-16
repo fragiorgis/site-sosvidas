@@ -40,7 +40,7 @@ O post Acácias possui o rótulo “Conteúdo de IA” no Instagram; o arquivo f
 
 ## Pendências editoriais externas
 
-A bio do Instagram ainda aponta para `sosvidas.netlify.app`, desativado. A administradora deve substituir pelo domínio `https://sosvidasrp.org.br/`. O post fixado informa WhatsApp (16) 99435-8796, diferente do WhatsApp usado no site. Confirmar com a instituição antes de alterar os canais de contato em todas as páginas.
+A bio do Instagram ainda aponta para `sosvidas.netlify.app`, desativado. A administradora deve substituir pelo domínio `https://sosvidasrp.org.br/`. Em 16/10/2026, o responsável confirmou o WhatsApp (16) 99435-8796. Todos os links de WhatsApp e os números apresentados como WhatsApp usam esse contato; o telefone fixo permanece (16) 3441-5578.
 
 ## Revisão visual e sazonal de 15/10/2026
 
