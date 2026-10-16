@@ -26,3 +26,26 @@ test('ordena por publicação sem alterar o catálogo e mantém todos os posts f
   assert.ok(result.some(p=>p.destaque===false));
   assert.ok(selectPosts(input,'destaques').every(p=>p.destaque===true));
 });
+
+test('Início e Eventos usam fotografias distintas, mantendo a mesma publicação e o catálogo original', () => {
+  const before = JSON.stringify(catalog);
+  const home = selectPosts(catalog, 'destaques');
+  const events = selectPosts(catalog);
+  const eventImages = new Set(events.map(post => post.imagem));
+  for (const post of home) {
+    assert.ok(!eventImages.has(post.imagem));
+    assert.ok(fs.statSync(new URL(`..${post.imagem}`, import.meta.url)).size > 0);
+    assert.equal(post.url, events.find(item => item.id === post.id).url);
+    assert.equal(post.alt, catalog.posts.find(item => item.id === post.id).altInicio);
+  }
+  assert.equal(JSON.stringify(catalog), before);
+});
+
+test('imagem alternativa inválida mantém a foto e descrição seguras do post', () => {
+  const valid = catalog.posts[0];
+  for (const change of [{imagemInicio:'https://example.com/photo.jpg'},{imagemInicio:'/img/instagram/../x.jpg'},{altInicio:''}]) {
+    const result = selectPosts({posts:[{...valid,destaque:true,...change}]}, 'destaques');
+    assert.equal(result[0].imagem, valid.imagem);
+    assert.equal(result[0].alt, valid.alt);
+  }
+});

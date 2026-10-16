@@ -1,5 +1,6 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  RewriteRule ^img/galeria/equipe-acolhimento\.jpg$ - [G,L]
   RewriteCond %{HTTP_HOST} ^www\.sosvidasrp\.org\.br$ [NC]
   RewriteRule ^ https://sosvidasrp.org.br%{REQUEST_URI} [R=301,L]
   RewriteCond %{HTTPS} !=on

@@ -1,15 +1,19 @@
 const SITE_ROOT = new URL('../', import.meta.url);
+const isLocalImage = value => typeof value === 'string' && /^\/img\/instagram\/[a-z0-9-]+\.(?:jpe?g|webp|png)$/.test(value);
 
 export function selectPosts(data, mode = 'todos') {
   if (!data || !Array.isArray(data.posts)) throw new TypeError('Catálogo de atualizações inválido.');
   return data.posts.filter(post => {
     if (post.publicado !== true || (mode === 'destaques' && post.destaque !== true)) return false;
     if (!['titulo', 'resumo', 'alt', 'categoria'].every(key => typeof post[key] === 'string' && post[key].trim())) return false;
-    if (!/^\/img\/instagram\/[a-z0-9-]+\.(?:jpe?g|webp|png)$/.test(post.imagem)) return false;
+    if (!isLocalImage(post.imagem)) return false;
     if (!/^https:\/\/www\.instagram\.com\/sos_vidass\/(?:p|reel)\/[A-Za-z0-9_-]+\/$/.test(post.url)) return false;
     if (!/^\d{4}-\d{2}-\d{2}$/.test(post.data) || !Number.isFinite(Date.parse(post.data))) return false;
     return new Date(`${post.data}T12:00:00Z`).toISOString().slice(0, 10) === post.data;
-  }).sort((a, b) => b.data.localeCompare(a.data)).slice(0, mode === 'destaques' ? 3 : 60);
+  }).sort((a, b) => b.data.localeCompare(a.data)).slice(0, mode === 'destaques' ? 3 : 60)
+    .map(post => mode === 'destaques' && isLocalImage(post.imagemInicio) && typeof post.altInicio === 'string' && post.altInicio.trim()
+      ? { ...post, imagem: post.imagemInicio, alt: post.altInicio }
+      : post);
 }
 
 export function createPost(post, doc = document) {

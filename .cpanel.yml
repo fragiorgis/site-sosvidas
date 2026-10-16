@@ -5,6 +5,7 @@ deployment:
     - /bin/mkdir -p "$DEPLOYPATH" "$DEPLOYPATH/js" "$DEPLOYPATH/data" "$DEPLOYPATH/docs"
     - /bin/cp index.html robots.txt sitemap.xml "$DEPLOYPATH/"
     - /bin/cp -R pages css img "$DEPLOYPATH/"
+    - if [ -f "$DEPLOYPATH/img/galeria/equipe-acolhimento.jpg" ]; then /bin/mkdir -p /home/sosvidasrporg/retired-site-media; /bin/mv "$DEPLOYPATH/img/galeria/equipe-acolhimento.jpg" /home/sosvidasrporg/retired-site-media/equipe-acolhimento.jpg; fi
     - /bin/cp -R docs/. "$DEPLOYPATH/docs/"
     - /bin/cp -R data/. "$DEPLOYPATH/data/"
     - /bin/cp js/main.js js/transparencia.js js/atualizacoes.js "$DEPLOYPATH/js/"

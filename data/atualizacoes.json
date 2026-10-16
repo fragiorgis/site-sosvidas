@@ -11,7 +11,9 @@
       "alt": "Integrante da SOS Vidas com presentes na comemoração do Dia das Crianças",
       "url": "https://www.instagram.com/sos_vidass/p/DefK_5Cj77k/",
       "destaque": true,
-      "publicado": true
+      "publicado": true,
+      "imagemInicio": "/img/instagram/criancas-alegria.webp",
+      "altInicio": "Participante sorrindo ao lado de uma acompanhante durante a celebração"
     },
     {
       "id": "idosos-2026",
@@ -22,8 +24,10 @@
       "imagem": "/img/instagram/dia-do-idoso.webp",
       "alt": "Participante recebendo um presente na comemoração do Dia do Idoso",
       "url": "https://www.instagram.com/sos_vidass/p/DeNFyM1j0nu/",
-      "destaque": false,
-      "publicado": true
+      "destaque": true,
+      "publicado": true,
+      "imagemInicio": "/img/instagram/idosos-convivencia.webp",
+      "altInicio": "Participantes reunidos na celebração do Dia do Idoso, um deles segurando um presente"
     },
     {
       "id": "acacias-2026",
@@ -34,7 +38,7 @@
       "imagem": "/img/instagram/doacoes-acacias.webp",
       "alt": "Grupo de apoiadoras junto às doações na sede da SOS Vidas",
       "url": "https://www.instagram.com/sos_vidass/p/DeKnLzUvll6/",
-      "destaque": true,
+      "destaque": false,
       "publicado": true
     },
     {
@@ -46,7 +50,7 @@
       "imagem": "/img/instagram/certificados-cursos.jpg",
       "alt": "Participantes preparando alimentos durante um curso profissionalizante",
       "url": "https://www.instagram.com/sos_vidass/reel/DdWfiRkueLG/",
-      "destaque": true,
+      "destaque": false,
       "publicado": true
     },
     {
@@ -60,6 +64,20 @@
       "url": "https://www.instagram.com/sos_vidass/reel/Db4GKvJvrXI/",
       "destaque": false,
       "publicado": true
+    },
+    {
+      "id": "herois-2026",
+      "titulo": "Uma visita cheia de brincadeiras",
+      "resumo": "Voluntários vestidos de Homem-Aranha participaram de um encontro com crianças e adolescentes na SOS Vidas.",
+      "data": "2026-10-14",
+      "categoria": "Convivência",
+      "imagem": "/img/instagram/herois-encontro.webp",
+      "alt": "Voluntário vestido de Homem-Aranha interagindo com uma criança acompanhada de uma adulta",
+      "imagemInicio": "/img/instagram/herois-brincadeira.webp",
+      "altInicio": "Crianças e um voluntário vestido de Homem-Aranha brincando no encontro",
+      "url": "https://www.instagram.com/sos_vidass/p/DefI8YyDymX/",
+      "publicado": true,
+      "destaque": true
     }
   ]
 }
